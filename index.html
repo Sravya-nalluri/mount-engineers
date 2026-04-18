@@ -3,207 +3,622 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mount Engineer's</title>
+<title>Mount Engineers</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 
 <style>
 body { font-family: 'Poppins', sans-serif; }
+html { scroll-behavior: smooth; }
+
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade1 {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.fade2 {
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.fade3 {
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+.fade4 {
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.9s;
+  opacity: 0;
+}
+
+nav a.active:not(.cta-btn) {
+  color: #ef4444;
+  font-weight: 600;
+  border-bottom: 2px solid #ef4444;
+  padding-bottom: 4px;
+}
+
+/* CARD BASE */
+.industry-card {
+  transition: all 0.4s ease;
+  border: 1px solid transparent;
+}
+
+/* HOVER */
+/* BASE */
+.industry-card {
+  transition: all 0.4s ease;
+}
+
+/* HOVER */
+.industry-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* ACTIVE (AUTO HIGHLIGHT) */
+.industry-card.active {
+  border: 2px solid #ef4444;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
+  transform: translateY(-6px) scale(1.03);
+}
+
+/* CARD EFFECT */
+.service-card {
+  transition: all 0.4s ease;
+}
+
+/* HOVER */
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+/* IMAGE ZOOM EFFECT */
+.service-card img {
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover img {
+  transform: scale(1.05);
+}
 </style>
 </head>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll("nav a");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 120;
+
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+
+      if (link.getAttribute("href") === "#" + current) {
+        link.classList.add("active");
+      }
+    });
+  });
+
+});
+</script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  const cards = document.querySelectorAll(".industry-card");
+  let index = 0;
+
+  function highlightCards() {
+    cards.forEach(card => card.classList.remove("active"));
+
+    if (cards.length > 0) {
+      cards[index].classList.add("active");
+      index = (index + 1) % cards.length;
+    }
+  }
+
+  highlightCards(); // start immediately
+  setInterval(highlightCards, 2000);
+
+});
+</script>
+
 
 <body class="bg-gray-50 text-gray-800">
 
 <!-- NAVBAR -->
-<header class="bg-[#0A1F44] text-white">
+<header class="bg-[#0A1F44] text-white fixed w-full z-50 shadow">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-    <h1 class="font-bold text-lg">MOUNT ENGINEER'S</h1>
-    <nav class="space-x-6 hidden md:block">
-      <a href="#">Home</a>
+    <div class="flex items-center gap-3">
+      <img src="images/logo.jpeg" class="h-10">
+      <span class="font-bold text-lg">MOUNT ENGINEERS</span>
+    </div>
+    <nav class="hidden md:flex gap-6 text-sm">
+      <a href="#hero">Home</a>
       <a href="#about">About</a>
+      <a href="#industries">Industries</a>
       <a href="#services">Services</a>
+      <a href="#products">Products</a>
+      <a href="#location">Location</a>
+
       <a href="#contact">Contact</a>
+
+  <!-- CTA BUTTON -->
+  <a href="#contact"
+   class="cta-btn bg-red-600 text-white px-5 py-2 rounded-lg font-semibold
+          hover:bg-red-700 transition duration-300 shadow-md">
+   Get Quote
+</a>
     </nav>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="relative h-[90vh] flex items-center">
-  <img src="images/hero.png" class="absolute w-full h-full object-cover">
-  <div class="absolute inset-0 bg-[#0A1F44]/80"></div>
+<section id="hero" class="relative h-screen bg-[#0A1F44] text-white flex items-center">
 
-  <div class="relative max-w-7xl mx-auto px-6 text-white">
-    <h1 class="text-4xl md:text-6xl font-bold leading-tight">
-      Precision Turning & Engineering Solutions
+  <!-- BACKGROUND -->
+  <img src="images/hero.png" class="absolute w-full h-full object-cover opacity-30">
+
+  <!-- CONTENT -->
+  <div class="relative max-w-7xl mx-auto px-6">
+
+    <!-- SMALL HEADING -->
+    <h2 class="fade1 text-red-400 text-lg mb-2">
+      Elevate Your Manufacturing
+    </h2>
+
+    <!-- MAIN HEADING -->
+    <h1 class="fade2 text-4xl md:text-6xl font-bold leading-tight">
+      Precision. Performance. Perfection.
     </h1>
-    <p class="mt-4 text-lg">
-      Trusted for Micron-Level Precision since 1990
+
+    <!-- DESCRIPTION -->
+    <p class="fade3 mt-4 max-w-xl text-gray-300">
+      CNC Turning & Milling with 0.02mm accuracy for high-performance industries.
     </p>
 
-    <div class="mt-6 flex gap-4">
-      <button class="bg-orange-500 px-6 py-3 rounded-lg font-medium hover:bg-orange-600">
-        Get Quote
-      </button>
-      <button class="border border-white px-6 py-3 rounded-lg">
-        Contact Us
-      </button>
+    <!-- BUTTONS -->
+    <div class="fade4 mt-8 flex gap-4">
+      <a href="#contact" class="bg-red-600 px-6 py-3 rounded-lg hover:bg-red-700 transition">
+        Request Quote
+      </a>
+
+      <a href="#services" class="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-black transition">
+        Explore Services
+      </a>
     </div>
+
   </div>
 </section>
-
 <!-- ABOUT -->
-<section id="about" class="py-20">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+<section id="about" class="bg-white">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 px-6 items-center">
+
+    <!-- TEXT -->
     <div>
-      <h2 class="text-3xl font-bold mb-4">About Mount Engineer’s</h2>
-      <p class="text-gray-600 leading-relaxed">
-        Established in 1990, Mount Engineer’s specializes in high-precision turning components,
-        micro-machining, and custom engineering solutions with tolerance up to 0.02mm.
+      <h2 class="text-4xl font-bold mb-4">About Mount Engineers</h2>
+
+      <p class="text-gray-600 mb-4 leading-relaxed">
+        Mount Engineers is a precision manufacturing company specializing in high-accuracy CNC turning and machining solutions. Since 1990, we have been delivering reliable and consistent components for industries that demand zero compromise on quality.
       </p>
+
+      <p class="text-gray-600 mb-6 leading-relaxed">
+        We work with a wide range of materials including stainless steel, brass, aluminum, and engineering plastics, achieving tolerances up to <span class="font-semibold text-black">0.02mm</span>. From small-scale custom jobs to complex R&D-based components, we bring designs to life with precision and performance.
+      </p>
+
+      <!-- KEY HIGHLIGHTS -->
+      <div class="grid grid-cols-2 gap-4 text-sm">
+
+        <div class="flex items-start gap-2">
+          <span class="text-red-500">✔</span>
+          <p>30+ Years Experience</p>
+        </div>
+
+        <div class="flex items-start gap-2">
+          <span class="text-red-500">✔</span>
+          <p>0.02mm Precision</p>
+        </div>
+
+        <div class="flex items-start gap-2">
+          <span class="text-red-500">✔</span>
+          <p>Custom Job Work</p>
+        </div>
+
+        <div class="flex items-start gap-2">
+          <span class="text-red-500">✔</span>
+          <p>MSME & GST Certified</p>
+        </div>
+
+      </div>
     </div>
-    <img src="images/about.png" class="rounded-xl shadow-lg">
+
+    <!-- IMAGE -->
+    <div class="relative">
+      <img src="images/about.png" class="rounded-2xl shadow-xl">
+
+      <!-- FLOATING CARD -->
+      <div class="absolute bottom-4 left-4 bg-white p-4 rounded-lg shadow-lg">
+        <p class="text-sm font-semibold">Since 1990</p>
+        <p class="text-xs text-gray-500">Trusted Manufacturing Partner</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- INDUSTRIES -->
+<section id="industries" class="bg-white text-gray-800"> 
+  <div class="max-w-7xl mx-auto px-6 w-full">
+
+    <h2 class="text-4xl font-bold mb-12 text-center">
+      INDUSTRIES WE SERVE
+    </h2>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- CARD 1 -->
+      <div class="industry-card p-6 rounded-xl bg-[#0A1F44] text-white shadow-md border border-white/10">
+        <div class="text-3xl mb-4">⚡</div>
+        <h3 class="font-bold text-lg mb-2">ELECTRONICS & CONNECTIVITY</h3>
+        <p class="text-sm text-gray-300">
+          Components machined from Copper, Brass & Aluminum for high conductivity.
+        </p>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="industry-card p-6 rounded-xl bg-[#0A1F44] text-white shadow-md border border-white/10">
+        <div class="text-3xl mb-4">🩺</div>
+        <h3 class="font-bold text-lg mb-2">MEDICAL DEVICES</h3>
+        <p class="text-sm text-gray-300">
+          Surgical-grade parts using Stainless Steel & Titanium for safety.
+        </p>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="industry-card p-6 rounded-xl bg-[#0A1F44] text-white shadow-md border border-white/10">
+        <div class="text-3xl mb-4">✈️</div>
+        <h3 class="font-bold text-lg mb-2">AEROSPACE & DEFENSE</h3>
+        <p class="text-sm text-gray-300">
+          High-strength precision components for extreme environments.
+        </p>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="industry-card p-6 rounded-xl bg-[#0A1F44] text-white shadow-md border border-white/10">
+        <div class="text-3xl mb-4">💧</div>
+        <h3 class="font-bold text-lg mb-2">FLUID CONTROL & FLOW</h3>
+        <p class="text-sm text-gray-300">
+          Rotameters, Nebulizers & Spray Systems manufacturing & assembly.
+        </p>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
 <!-- SERVICES -->
-<section id="services" class="bg-gray-100 py-20">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+<section id="services" class="bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6 w-full text-center">
 
-    <div class="grid md:grid-cols-4 gap-6">
+    <h2 class="text-4xl font-bold mb-12">
+      OUR SERVICES
+    </h2>
 
-      <!-- Turning -->
-      <div class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
-        <img src="images/turning.png" class="w-full h-40 object-cover hover:scale-105 transition duration-300">
-        <div class="p-4">
-          <h3 class="font-semibold text-lg">Turning</h3>
-          <p class="text-gray-500">CNC & Manual turning with precision</p>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- TURNING -->
+      <div class="service-card rounded-xl overflow-hidden bg-white shadow-md border border-gray-200">
+        <img src="images/turning.png" class="w-full h-40 object-cover">
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2 text-[#0A1F44]">CNC Turning</h3>
+          <p class="text-sm text-gray-600">
+            High-precision micro turning with accuracy up to 0.02mm.
+          </p>
         </div>
       </div>
 
-      <!-- Milling -->
-      <div class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
-        <img src="images/milling.png" class="w-full h-40 object-cover hover:scale-105 transition duration-300">
-        <div class="p-4">
-          <h3 class="font-semibold text-lg">Milling</h3>
-          <p class="text-gray-500">High accuracy milling solutions</p>
+      <!-- MILLING -->
+      <div class="service-card rounded-xl overflow-hidden bg-white shadow-md border border-gray-200">
+        <img src="images/milling.png" class="w-full h-40 object-cover">
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2 text-[#0A1F44]">CNC Milling</h3>
+          <p class="text-sm text-gray-600">
+            Advanced machining for complex geometries.
+          </p>
         </div>
       </div>
 
-      <!-- Grinding -->
-      <div class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
-        <img src="images/grinding.png" class="w-full h-40 object-cover hover:scale-105 transition duration-300">
-        <div class="p-4">
-          <h3 class="font-semibold text-lg">Grinding</h3>
-          <p class="text-gray-500">Fine finishing with tight tolerance</p>
+      <!-- GRINDING -->
+      <div class="service-card rounded-xl overflow-hidden bg-white shadow-md border border-gray-200">
+        <img src="images/grinding.png" class="w-full h-40 object-cover">
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2 text-[#0A1F44]">Grinding & Finishing</h3>
+          <p class="text-sm text-gray-600">
+            Surface finishing, polishing, and coating.
+          </p>
         </div>
       </div>
 
-      <!-- Custom -->
-      <div class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden">
-        <img src="images/products.png" class="w-full h-40 object-cover hover:scale-105 transition duration-300">
-        <div class="p-4">
-          <h3 class="font-semibold text-lg">Custom Job Work</h3>
-          <p class="text-gray-500">R&D & reverse engineering</p>
+      <!-- ASSEMBLY -->
+      <div class="service-card rounded-xl overflow-hidden bg-white shadow-md border border-gray-200">
+        <img src="images/Assemble.png" class="w-full h-40 object-cover">
+        <div class="p-6">
+          <h3 class="font-bold text-lg mb-2 text-[#0A1F44]">Full Assembly</h3>
+          <p class="text-sm text-gray-600">
+            Rotameters, nebulizers & spray systems assembly.
+          </p>
         </div>
       </div>
 
     </div>
+
   </div>
 </section>
-
 <!-- PRODUCTS -->
-<section class="py-20">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-12">Our Products</h2>
+<section id="products" class="bg-white py-20">
+  <div class="max-w-6xl mx-auto text-center px-6">
 
-    <div class="grid md:grid-cols-3 gap-6">
+    <h2 class="text-4xl font-bold mb-4">Our Products</h2>
+    <p class="text-gray-600 mb-12">
+      Precision-engineered components designed for performance and reliability.
+    </p>
 
-      <div class="bg-white rounded-xl shadow overflow-hidden">
-        <img src="images/products.png" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h3 class="font-semibold">Precision Components</h3>
-          <p class="text-gray-500">High accuracy engineered parts</p>
+    <!-- MAIN CAROUSEL -->
+    <div class="relative flex justify-center items-center">
+
+      <!-- LEFT IMAGE -->
+      <img id="c-left"
+        class="hidden md:block w-48 h-72 object-cover opacity-30 scale-90 rounded-xl transition duration-500">
+
+      <!-- MAIN IMAGE -->
+      <div class="relative">
+        <img id="c-main"
+          class="w-80 h-[420px] object-cover rounded-2xl shadow-xl transition duration-500">
+
+        <!-- overlay text -->
+        <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg text-sm">
+          Precision Component
         </div>
       </div>
 
-      <div class="bg-white rounded-xl shadow overflow-hidden">
-        <img src="images/products.png" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h3 class="font-semibold">Custom Parts</h3>
-          <p class="text-gray-500">Manufactured as per requirements</p>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-xl shadow overflow-hidden">
-        <img src="images/products.png" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <h3 class="font-semibold">Industrial Components</h3>
-          <p class="text-gray-500">Durable & precise engineering</p>
-        </div>
-      </div>
+      <!-- RIGHT IMAGE -->
+      <img id="c-right"
+        class="hidden md:block w-48 h-72 object-cover opacity-30 scale-90 rounded-xl transition duration-500">
 
     </div>
+
+    <!-- NAV BUTTONS -->
+    <div class="flex justify-center gap-6 mt-8">
+      <button onclick="carouselNav(-1)"
+        class="bg-gray-200 px-4 py-2 rounded-full hover:bg-gray-300 transition">
+        ←
+      </button>
+
+      <button onclick="carouselNav(1)"
+        class="bg-gray-200 px-4 py-2 rounded-full hover:bg-gray-300 transition">
+        →
+      </button>
+    </div>
+
+    <!-- THUMBNAILS -->
+    <div id="thumbContainer" class="flex justify-center gap-4 mt-8 flex-wrap"></div>
+
   </div>
 </section>
 
-<!-- WHY US -->
-<section class="py-20">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
+<!-- LOCATION -->
+<section id="location" class="bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center w-full">
 
-    <div class="grid md:grid-cols-4 gap-6 text-center">
-      <div class="bg-[#0A1F44] text-white p-6 rounded-xl">0.02mm Precision</div>
-      <div class="bg-[#0A1F44] text-white p-6 rounded-xl">Fast Delivery</div>
-      <div class="bg-[#0A1F44] text-white p-6 rounded-xl">Customization</div>
-      <div class="bg-[#0A1F44] text-white p-6 rounded-xl">30+ Years Experience</div>
+    <!-- LEFT -->
+    <div>
+      <h2 class="text-4xl font-bold mb-6">Visit Our Facility</h2>
+
+      <p class="text-gray-600 mb-6">
+        Our manufacturing unit is located in Hyderabad, equipped to handle precision machining, assembly, and engineering solutions for multiple industries.
+      </p>
+
+      <div class="space-y-4 text-sm">
+
+        <p>
+          <span class="font-semibold text-[#0A1F44]">📍 Address:</span><br>
+          Shop No. 7524, Hanuman Temple,<br>
+          Near Old Airport Road,<br>
+          Nagarjuna Colony, Gautam Nagar,<br>
+          Hyderabad – 500011
+        </p>
+
+        <p>
+          <span class="font-semibold text-[#0A1F44]">📞 Phone:</span><br>
+          +91 9440361856
+        </p>
+
+        <p>
+          <span class="font-semibold text-[#0A1F44]">📧 Email:</span><br>
+          mountengineersmadhu@gmail.com
+        </p>
+
+      </div>
+
+      <!-- BUTTON -->
+      <a href="https://maps.app.goo.gl/ZHacvuJkeJHWjWYW9" target="_blank"
+         class="inline-block mt-6 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition">
+        Get Directions
+      </a>
     </div>
-  </div>
-</section>
 
-<!-- CTA -->
-<section class="bg-[#0A1F44] text-white py-16 text-center">
-  <h2 class="text-3xl font-bold">Need High Precision Components?</h2>
-  <button class="mt-6 bg-orange-500 px-6 py-3 rounded-lg hover:bg-orange-600">
-    Request a Quote
-  </button>
+    <!-- MAP -->
+    <div class="rounded-xl overflow-hidden shadow-lg">
+      <iframe 
+        src="https://www.google.com/maps?q=Gautam%20Nagar%20Hyderabad&output=embed"
+        class="w-full h-[350px] border-0">
+      </iframe>
+    </div>
+
+  </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="py-20 bg-gray-100">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10">
+<section id="contact" class="bg-gray-100">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center w-full">
 
+    <!-- LEFT SIDE -->
     <div>
-      <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
-      <p>📞 9440361856 / 6301624596</p>
-      <p>📧 mountengineersmadhu@gmail.com</p>
+      <h2 class="text-4xl font-bold mb-6">Request a Quote</h2>
+
+      <p class="text-gray-600 mb-6">
+        Have a requirement? Share your details and our team will get back to you with a customized quote.
+      </p>
+
+      <div class="space-y-4 text-sm">
+
+        <p><span class="font-semibold text-[#0A1F44]">📞 Phone:</span><br>
+        +91 9440361856</p>
+
+        <p><span class="font-semibold text-[#0A1F44]">📧 Email:</span><br>
+        mountengineersmadhu@gmail.com</p>
+
+        <p><span class="font-semibold text-[#0A1F44]">⚙️ Services:</span><br>
+        CNC Turning, Milling, Grinding, Assembly</p>
+
+      </div>
     </div>
 
-    <form class="bg-white p-6 rounded-xl shadow space-y-4">
-      <input class="w-full border p-3 rounded" placeholder="Your Name">
-      <input class="w-full border p-3 rounded" placeholder="Phone Number">
-      <input type="file" class="w-full border p-3 rounded">
-      <textarea class="w-full border p-3 rounded" placeholder="Your Requirement"></textarea>
-      <button class="w-full bg-orange-500 text-white py-3 rounded">
-        Send Message
-      </button>
-    </form>
+    <!-- FORM -->
+    <form action="https://formspree.io/f/xlgabkvp" method="POST"
+      class="bg-white p-8 rounded-xl shadow-lg space-y-4">
+
+  <input 
+    type="text" 
+    name="name"
+    placeholder="Your Name" 
+    required
+    class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+
+  <input 
+    type="email" 
+    name="email"
+    placeholder="Email Address" 
+    required
+    class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+
+  <input 
+    type="text" 
+    name="phone"
+    placeholder="Phone Number" 
+    class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+
+  <textarea 
+    name="message"
+    rows="4"
+    placeholder="Describe your requirement..."
+    required
+    class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+  </textarea>
+
+  <!-- ✅ FIXED -->
+  <input type="hidden" name="_next" value="https://mount-engineers.vercel.app/thankyou.html">
+  <!-- ✅ ADD THIS -->
+  <input type="hidden" name="_subject" value="New Quote Request - Mount Engineers">
+
+  <button 
+    type="submit"
+    class="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+    Get Quote
+  </button>
+
+</form>
 
   </div>
 </section>
 
-<!-- WHATSAPP -->
-<a href="https://wa.me/919440361856" target="_blank"
-class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-3 rounded-full shadow-lg">
-💬
-</a>
-
 <!-- FOOTER -->
-<footer class="bg-black text-white text-center py-6">
-  © 2026 Mount Engineer's
+<footer class="bg-[#0A1F44] text-white text-center py-4">
+  © Mount Engineers
 </footer>
+
+<script>
+const images = [
+  "images/prod1.jpeg",
+  "images/prod2.jpeg"
+];
+
+let current = 0;
+
+function updateCarousel() {
+  const main = document.getElementById("c-main");
+  const left = document.getElementById("c-left");
+  const right = document.getElementById("c-right");
+
+  main.src = images[current];
+
+  left.src = images[(current - 1 + images.length) % images.length];
+  right.src = images[(current + 1) % images.length];
+
+  updateThumbs();
+}
+
+function carouselNav(dir) {
+  current = (current + dir + images.length) % images.length;
+  updateCarousel();
+}
+
+function updateThumbs() {
+  const container = document.getElementById("thumbContainer");
+  container.innerHTML = "";
+
+  images.forEach((img, i) => {
+    const thumb = document.createElement("img");
+    thumb.src = img;
+    thumb.className = `w-20 h-28 object-cover rounded cursor-pointer transition 
+      ${i === current ? "border-2 border-red-500 scale-105" : "opacity-60"}`;
+
+    thumb.onclick = () => {
+      current = i;
+      updateCarousel();
+    };
+
+    container.appendChild(thumb);
+  });
+}
+
+// INIT
+updateCarousel();
+</script>
 
 </body>
 </html>
