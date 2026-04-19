@@ -3,622 +3,1017 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mount Engineers</title>
-
+<title>Mount Engineers – Precision CNC Machining, Hyderabad</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-body { font-family: 'Poppins', sans-serif; }
-html { scroll-behavior: smooth; }
-
-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 80px 0;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  :root {
+    --navy: #010d22;
+    --red: #e63030;
+    --red-dark: #c42020;
+    --gold: #dba81b;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  * { box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; }
+  html { scroll-behavior: smooth; }
+
+  h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+  /* ── NAVBAR ── */
+ #navbar {
+  background: var(--navy);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
-}
 
-.fade1 {
-  animation: fadeUp 0.8s ease forwards;
-}
+  /* Top bar: logo + contact info */
+  .nav-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
 
-.fade2 {
-  animation: fadeUp 0.8s ease forwards;
-  animation-delay: 0.3s;
-  opacity: 0;
-}
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-.fade3 {
-  animation: fadeUp 0.8s ease forwards;
-  animation-delay: 0.6s;
-  opacity: 0;
-}
+  .nav-brand img {
+    height: 42px;
+    border-radius: 6px;
+    background: white;
+    padding: 2px;
+  }
 
-.fade4 {
-  animation: fadeUp 0.8s ease forwards;
-  animation-delay: 0.9s;
-  opacity: 0;
-}
+  .nav-brand-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: rgb(245, 10, 10);
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+  }
 
-nav a.active:not(.cta-btn) {
-  color: #ef4444;
-  font-weight: 600;
-  border-bottom: 2px solid #ef4444;
-  padding-bottom: 4px;
-}
+  .nav-brand-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
 
-/* CARD BASE */
-.industry-card {
-  transition: all 0.4s ease;
-  border: 1px solid transparent;
-}
+  .nav-contact-info {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.8);
+  }
 
-/* HOVER */
-/* BASE */
-.industry-card {
-  transition: all 0.4s ease;
-}
+  .nav-contact-info a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
 
-/* HOVER */
-.industry-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
+  .nav-contact-info a:hover { color: var(--gold); }
 
-/* ACTIVE (AUTO HIGHLIGHT) */
-.industry-card.active {
-  border: 2px solid #ef4444;
-  box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
-  transform: translateY(-6px) scale(1.03);
-}
+  /* Bottom bar: nav links */
+  .nav-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+  }
 
-/* CARD EFFECT */
-.service-card {
-  transition: all 0.4s ease;
-}
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-/* HOVER */
-.service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-}
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.25s;
+  }
 
-/* IMAGE ZOOM EFFECT */
-.service-card img {
-  transition: transform 0.4s ease;
-}
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: white;
+    border-bottom-color: var(--red);
+  }
 
-.service-card:hover img {
-  transform: scale(1.05);
-}
+  .cta-btn {
+    background: var(--red);
+    color: white !important;
+    padding: 7px 20px;
+    border-radius: 6px;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: none !important;
+    transition: background 0.25s !important;
+  }
+
+  .cta-btn:hover { background: var(--red-dark) !important; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 0; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: var(--navy);
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(230,48,48,0.07) 0%, transparent 50%);
+  }
+
+  #hero img.hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+  }
+
+  .hero-content { position: relative; max-width: 1280px; margin: 0 auto; padding: 120px; }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(42, 33, 10, 0.15);
+    border: 1px solid rgba(252, 185, 3, 0.4);
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .f1 { animation: fadeUp 0.8s ease forwards; }
+  .f2 { animation: fadeUp 0.8s ease 0.25s forwards; opacity: 0; }
+  .f3 { animation: fadeUp 0.8s ease 0.5s forwards; opacity: 0; }
+  .f4 { animation: fadeUp 0.8s ease 0.75s forwards; opacity: 0; }
+
+  
+
+   /* ── INDUSTRY CARDS ── */
+  .industry-card {
+    background: var(--navy);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 28px 24px;
+    color: white;
+    transition: all 0.35s ease;
+    cursor: default;
+  }
+
+  .industry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.3);
+    border-color: var(--red);
+  }
+
+  .industry-card.active {
+    border-color: var(--red);
+    box-shadow: 0 0 30px rgba(230,48,48,0.35);
+    transform: translateY(-5px) scale(1.02);
+  }
+
+  /* ── SERVICE CARDS ── */
+  .service-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.35s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+    border-color: var(--red);
+  }
+
+  .service-card img { transition: transform 0.4s ease; }
+  .service-card:hover img { transform: scale(1.06); }
+
+  /* ── PRODUCTS CAROUSEL ── */
+  .carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carousel-slide img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  }
+
+  .carousel-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+  }
+
+  .carousel-dot.active {
+    background: var(--red);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  /* ── CLIENTS SECTION ── */
+  .client-logo-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--navy);
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .client-logo-card:hover {
+    border-color: var(--red);
+    box-shadow: 0 6px 20px rgba(230,48,48,0.1);
+    transform: translateY(-3px);
+  }
+
+  /* ── SECTION LABELS ── */
+  .section-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+
+  /* ── CAPABILITIES TABLE ── */
+  .cap-table th {
+    background: var(--navy);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .cap-table td {
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .cap-table tr:nth-child(even) td { background: #fafafa; }
+  .cap-table tr:hover td { background: #fff5f5; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    .nav-contact-info { display: none; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 0.72rem; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .trusted-companies { gap: 20px; }
+  }
 </style>
 </head>
 
-<script>
-window.addEventListener("DOMContentLoaded", () => {
+<body class="bg-gray-50">
 
-  const sections = document.querySelectorAll("section");
-  const navLinks = document.querySelectorAll("nav a");
+<!-- ═══════════════════════════════════════════ NAVBAR ═══════════ -->
+<header id="navbar">
+  <div class="nav-inner">
 
-  window.addEventListener("scroll", () => {
-    let current = "";
+    <!-- TOP: Logo + Contact -->
+    <div class="nav-top">
+      <div class="nav-brand">
+        <img src="images/logo.jpeg" alt="Mount Engineers Logo" style="height:65px;">        <div>
+          <div class="nav-brand-text">MOUNT ENGINEERS</div>
+          <div class="nav-brand-sub">Precision CNC Machining · Since 1990</div>
+        </div>
+      </div>
 
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 120;
-
-      if (window.scrollY >= sectionTop) {
-        current = section.getAttribute("id");
-      }
-    });
-
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-
-      if (link.getAttribute("href") === "#" + current) {
-        link.classList.add("active");
-      }
-    });
-  });
-
-});
-</script>
-
-<script>
-window.addEventListener("DOMContentLoaded", () => {
-
-  const cards = document.querySelectorAll(".industry-card");
-  let index = 0;
-
-  function highlightCards() {
-    cards.forEach(card => card.classList.remove("active"));
-
-    if (cards.length > 0) {
-      cards[index].classList.add("active");
-      index = (index + 1) % cards.length;
-    }
-  }
-
-  highlightCards(); // start immediately
-  setInterval(highlightCards, 2000);
-
-});
-</script>
-
-
-<body class="bg-gray-50 text-gray-800">
-
-<!-- NAVBAR -->
-<header class="bg-[#0A1F44] text-white fixed w-full z-50 shadow">
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-    <div class="flex items-center gap-3">
-      <img src="images/logo.jpeg" class="h-10">
-      <span class="font-bold text-lg">MOUNT ENGINEERS</span>
+      <div class="nav-contact-info">
+        <a href="tel:+919440361856">
+          <span>📞</span> +91 94403 61856
+        </a>
+        <a href="mailto:mountengineersmadhu@gmail.com">
+          <span>✉</span> mountengineersmadhu@gmail.com
+        </a>
+        <a href="#contact" class="cta-btn">Get Quote</a>
+      </div>
     </div>
-    <nav class="hidden md:flex gap-6 text-sm">
-      <a href="#hero">Home</a>
-      <a href="#about">About</a>
-      <a href="#industries">Industries</a>
-      <a href="#services">Services</a>
-      <a href="#products">Products</a>
-      <a href="#location">Location</a>
 
-      <a href="#contact">Contact</a>
+    <!-- BOTTOM: Nav links -->
+    <div class="nav-bottom">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
 
-  <!-- CTA BUTTON -->
-  <a href="#contact"
-   class="cta-btn bg-red-600 text-white px-5 py-2 rounded-lg font-semibold
-          hover:bg-red-700 transition duration-300 shadow-md">
-   Get Quote
-</a>
-    </nav>
   </div>
 </header>
 
-<!-- HERO -->
-<section id="hero" class="relative h-screen bg-[#0A1F44] text-white flex items-center">
 
-  <!-- BACKGROUND -->
-  <img src="images/hero.png" class="absolute w-full h-full object-cover opacity-30">
+<!-- ═══════════════════════════════════════════ HERO ═══════════ -->
+<section id="hero">
+  <img src="images/hero.png" class="hero-bg" alt="">
 
-  <!-- CONTENT -->
-  <div class="relative max-w-7xl mx-auto px-6">
+  <div class="hero-content" style="padding-top:90px;">
 
-    <!-- SMALL HEADING -->
-    <h2 class="fade1 text-red-400 text-lg mb-2">
-      Elevate Your Manufacturing
-    </h2>
+    <div class="hero-tag f1">Premier CNC Job Work · Hyderabad</div>
 
-    <!-- MAIN HEADING -->
-    <h1 class="fade2 text-4xl md:text-6xl font-bold leading-tight">
-      Precision. Performance. Perfection.
+    <h1 class="f2 text-white" style="
+      font-family: Cambria, 'Times New Roman', serif;
+      font-size:clamp(1.8rem,4vw,3rem);
+      line-height:1.2;
+      max-width:600px;
+      margin-bottom:12px;
+    ">
+      Elevate Your Manufacturing with Mount Engineers
     </h1>
 
-    <!-- DESCRIPTION -->
-    <p class="fade3 mt-4 max-w-xl text-gray-300">
-      CNC Turning & Milling with 0.02mm accuracy for high-performance industries.
+    <p class="f3 text-white" style="
+      font-size:1.05rem;
+      font-weight:600;
+      color:#C9A84C;
+      margin-bottom:10px;
+    ">
+      Precision. Performance. Perfection.
     </p>
 
-    <!-- BUTTONS -->
-    <div class="fade4 mt-8 flex gap-4">
-      <a href="#contact" class="bg-red-600 px-6 py-3 rounded-lg hover:bg-red-700 transition">
-        Request Quote
+    <p class="f3" style="
+      color:rgba(255,255,255,0.7);
+      max-width:520px;
+      line-height:1.6;
+      margin-bottom:20px;
+      font-size:0.88rem;
+    ">
+      We turn complex designs into high-performance realities — delivering excellence at every micron across Electronics, Medical, Aerospace, and Flow Control industries.
+    </p>
+
+    <div class="f4" style="display:flex; gap:10px; flex-wrap:wrap;">
+      <a href="#contact" style="
+        background:var(--red);
+        color:white;
+        padding:10px 20px;
+        border-radius:6px;
+        font-weight:600;
+        font-size:0.85rem;
+        text-decoration:none;
+      ">
+        Request a Quote
       </a>
 
-      <a href="#services" class="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-black transition">
+      <a href="#services" style="
+        border:1.5px solid rgba(255,255,255,0.5);
+        color:white;
+        padding:10px 20px;
+        border-radius:6px;
+        font-weight:600;
+        font-size:0.85rem;
+        text-decoration:none;
+      ">
         Explore Services
       </a>
     </div>
 
   </div>
 </section>
-<!-- ABOUT -->
-<section id="about" class="bg-white">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 px-6 items-center">
 
-    <!-- TEXT -->
+<!-- ═══════════════════════════════════════════ ABOUT ═══════════ -->
+<section id="about" style="background:rgb(234, 233, 241);">
+  <div style="max-width:1280px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;" class="md-grid">
+
     <div>
-      <h2 class="text-4xl font-bold mb-4">About Mount Engineers</h2>
-
-      <p class="text-gray-600 mb-4 leading-relaxed">
-        Mount Engineers is a precision manufacturing company specializing in high-accuracy CNC turning and machining solutions. Since 1990, we have been delivering reliable and consistent components for industries that demand zero compromise on quality.
+      <span class="section-label">About Us</span>
+      <h2 style="font-size:2.4rem; color:var(--navy); margin-bottom:18px;">
+        A Legacy of Precision Since 1990
+      </h2>
+      <p style="color:#555; line-height:1.8; margin-bottom:16px; font-size:0.93rem;">
+        Mount Engineers is a premier precision manufacturing company, specializing in high-accuracy CNC Turning and Milling solutions. For over three decades, we have been the trusted manufacturing partner for companies that demand zero compromise on quality.
+      </p>
+      <p style="color:#555; line-height:1.8; margin-bottom:24px; font-size:0.93rem;">
+        From intricate electronic connectors to life-saving surgical components and aerospace-grade hardware, we consistently deliver excellence at every micron. We work with a comprehensive range of materials — Brass, Aluminum, Stainless Steel, Copper, Titanium, Delrin, and engineering plastics — achieving tolerances as tight as <strong style="color:#1a1a2e;">0.02mm</strong>.
       </p>
 
-      <p class="text-gray-600 mb-6 leading-relaxed">
-        We work with a wide range of materials including stainless steel, brass, aluminum, and engineering plastics, achieving tolerances up to <span class="font-semibold text-black">0.02mm</span>. From small-scale custom jobs to complex R&D-based components, we bring designs to life with precision and performance.
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.85rem;">
+        <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;">
+          <span style="color:var(--red); font-size:1rem;">✔</span> 30+ Years of Experience
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;">
+          <span style="color:var(--red);">✔</span> 0.02mm Precision Tolerances
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;">
+          <span style="color:var(--red);">✔</span> Custom & High-Volume Job Work
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;">
+          <span style="color:var(--red);">✔</span> MSME & GST Certified
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;">
+          <span style="color:var(--red);">✔</span> Aerospace & Surgical Grade
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;">
+          <span style="color:var(--red);">✔</span> Full Assembly Capability
+        </div>
+      </div>
+    </div>
+
+    <div style="position:relative;">
+      <img src="images/about.png" alt="Mount Engineers Facility" style="border-radius:16px; width:100%; box-shadow:0 20px 50px rgba(0,0,0,0.12);">
+      <div style="position:absolute; bottom:20px; left:20px; background:white; padding:16px 20px; border-radius:10px; box-shadow:0 8px 25px rgba(0,0,0,0.12); border-left:3px solid var(--red);">
+        <p style="font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--navy);">Est. 1990</p>
+        <p style="font-size:0.75rem; color:#666; margin-top:2px;">Trusted Manufacturing Partner</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ INDUSTRIES ═══════════ -->
+<section id="industries" style="background:#f9f9fb;">
+  <div style="max-width:1280px; margin:0 auto; padding:0 28px;">
+    <div style="text-align:center; margin-bottom:44px;">
+      <span class="section-label">What We Serve</span>
+      <h2 style="font-size:2.4rem; color:var(--navy);">Industries We Serve</h2>
+      <p style="color:#666; max-width:560px; margin:10px auto 0; font-size:0.9rem; line-height:1.7;">
+        Delivering certified precision components for sectors where accuracy is not optional — it is critical.
       </p>
-
-      <!-- KEY HIGHLIGHTS -->
-      <div class="grid grid-cols-2 gap-4 text-sm">
-
-        <div class="flex items-start gap-2">
-          <span class="text-red-500">✔</span>
-          <p>30+ Years Experience</p>
-        </div>
-
-        <div class="flex items-start gap-2">
-          <span class="text-red-500">✔</span>
-          <p>0.02mm Precision</p>
-        </div>
-
-        <div class="flex items-start gap-2">
-          <span class="text-red-500">✔</span>
-          <p>Custom Job Work</p>
-        </div>
-
-        <div class="flex items-start gap-2">
-          <span class="text-red-500">✔</span>
-          <p>MSME & GST Certified</p>
-        </div>
-
-      </div>
     </div>
 
-    <!-- IMAGE -->
-    <div class="relative">
-      <img src="images/about.png" class="rounded-2xl shadow-xl">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px;">
 
-      <!-- FLOATING CARD -->
-      <div class="absolute bottom-4 left-4 bg-white p-4 rounded-lg shadow-lg">
-        <p class="text-sm font-semibold">Since 1990</p>
-        <p class="text-xs text-gray-500">Trusted Manufacturing Partner</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-<!-- INDUSTRIES -->
-<section id="industries" class="bg-white text-gray-800"> 
-  <div class="max-w-7xl mx-auto px-6 w-full">
-
-    <h2 class="text-4xl font-bold mb-12 text-center">
-      INDUSTRIES WE SERVE
-    </h2>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-      <!-- CARD 1 -->
-      <div class="industry-card p-6 rounded-xl bg-[#0A1F44] text-white shadow-md border border-white/10">
-        <div class="text-3xl mb-4">⚡</div>
-        <h3 class="font-bold text-lg mb-2">ELECTRONICS & CONNECTIVITY</h3>
-        <p class="text-sm text-gray-300">
-          Components machined from Copper, Brass & Aluminum for high conductivity.
+      <div class="industry-card" id="ic0">
+        <div style="font-size:2.2rem; margin-bottom:14px;">⚡</div>
+        <h3 style="font-size:1.05rem; margin-bottom:10px; font-family:'Playfair Display',serif;">Electronics & Connectivity</h3>
+        <p style="font-size:0.83rem; color:rgba(255,255,255,0.7); line-height:1.65;">
+          High-conductivity components machined from Copper, Brass, and Aluminum, engineered for performance and reliability in electronic systems.
         </p>
       </div>
 
-      <!-- CARD 2 -->
-      <div class="industry-card p-6 rounded-xl bg-[#0A1F44] text-white shadow-md border border-white/10">
-        <div class="text-3xl mb-4">🩺</div>
-        <h3 class="font-bold text-lg mb-2">MEDICAL DEVICES</h3>
-        <p class="text-sm text-gray-300">
-          Surgical-grade parts using Stainless Steel & Titanium for safety.
+      <div class="industry-card" id="ic1">
+        <div style="font-size:2.2rem; margin-bottom:14px;">🩺</div>
+        <h3 style="font-size:1.05rem; margin-bottom:10px; font-family:'Playfair Display',serif;">Medical Device Manufacturing</h3>
+        <p style="font-size:0.83rem; color:rgba(255,255,255,0.7); line-height:1.65;">
+          Surgical-grade Stainless Steel and Titanium components, manufactured under rigorous standards for implants, diagnostic tools, and sterile instruments.
         </p>
       </div>
 
-      <!-- CARD 3 -->
-      <div class="industry-card p-6 rounded-xl bg-[#0A1F44] text-white shadow-md border border-white/10">
-        <div class="text-3xl mb-4">✈️</div>
-        <h3 class="font-bold text-lg mb-2">AEROSPACE & DEFENSE</h3>
-        <p class="text-sm text-gray-300">
-          High-strength precision components for extreme environments.
+      <div class="industry-card" id="ic2">
+        <div style="font-size:2.2rem; margin-bottom:14px;">✈️</div>
+        <h3 style="font-size:1.05rem; margin-bottom:10px; font-family:'Playfair Display',serif;">Aerospace & Defence</h3>
+        <p style="font-size:0.83rem; color:rgba(255,255,255,0.7); line-height:1.65;">
+          Aerospace-grade precision parts designed to withstand extreme pressures and temperatures — manufactured with zero tolerance for error.
         </p>
       </div>
 
-      <!-- CARD 4 -->
-      <div class="industry-card p-6 rounded-xl bg-[#0A1F44] text-white shadow-md border border-white/10">
-        <div class="text-3xl mb-4">💧</div>
-        <h3 class="font-bold text-lg mb-2">FLUID CONTROL & FLOW</h3>
-        <p class="text-sm text-gray-300">
-          Rotameters, Nebulizers & Spray Systems manufacturing & assembly.
+      <div class="industry-card" id="ic3">
+        <div style="font-size:2.2rem; margin-bottom:14px;">💧</div>
+        <h3 style="font-size:1.05rem; margin-bottom:10px; font-family:'Playfair Display',serif;">Fluid Control & Flow Measurement</h3>
+        <p style="font-size:0.83rem; color:rgba(255,255,255,0.7); line-height:1.65;">
+          End-to-end manufacturing and assembly of Rotameters, Fog Nebulizers, and Industrial Spray Systems for precise flow measurement applications.
         </p>
       </div>
 
     </div>
-
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="bg-gray-50">
-  <div class="max-w-7xl mx-auto px-6 w-full text-center">
 
-    <h2 class="text-4xl font-bold mb-12">
-      OUR SERVICES
-    </h2>
+<!-- ═══════════════════════════════════════════ SERVICES ═══════════ -->
+<section id="services" style="background:white;">
+  <div style="max-width:1280px; margin:0 auto; padding:0 28px;">
+    <div style="text-align:center; margin-bottom:44px;">
+      <span class="section-label">What We Do</span>
+      <h2 style="font-size:2.4rem; color:var(--navy);">Our Core Services</h2>
+      <p style="color:#666; max-width:500px; margin:10px auto 0; font-size:0.9rem; line-height:1.7;">
+        A comprehensive suite of precision machining and assembly services under one roof.
+      </p>
+    </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px;">
 
-      <!-- TURNING -->
-      <div class="service-card rounded-xl overflow-hidden bg-white shadow-md border border-gray-200">
-        <img src="images/turning.png" class="w-full h-40 object-cover">
-        <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 text-[#0A1F44]">CNC Turning</h3>
-          <p class="text-sm text-gray-600">
-            High-precision micro turning with accuracy up to 0.02mm.
+      <div class="service-card">
+        <div style="overflow:hidden; height:160px;">
+          <img src="images/turning.png" alt="CNC Turning" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div style="padding:22px;">
+          <h3 style="font-size:1.05rem; color:var(--navy); margin-bottom:8px;">CNC Turning</h3>
+          <p style="font-size:0.83rem; color:#666; line-height:1.65;">
+            High-precision micro turning achieving tolerances up to 0.02mm. Our core specialization — ideal for high-volume, complex rotational components.
           </p>
         </div>
       </div>
 
-      <!-- MILLING -->
-      <div class="service-card rounded-xl overflow-hidden bg-white shadow-md border border-gray-200">
-        <img src="images/milling.png" class="w-full h-40 object-cover">
-        <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 text-[#0A1F44]">CNC Milling</h3>
-          <p class="text-sm text-gray-600">
-            Advanced machining for complex geometries.
+      <div class="service-card">
+        <div style="overflow:hidden; height:160px;">
+          <img src="images/milling.png" alt="CNC Milling" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div style="padding:22px;">
+          <h3 style="font-size:1.05rem; color:var(--navy); margin-bottom:8px;">CNC Milling</h3>
+          <p style="font-size:0.83rem; color:#666; line-height:1.65;">
+            Advanced 3-axis machining for complex geometries, pockets, slots, and contoured surfaces across a wide range of materials.
           </p>
         </div>
       </div>
 
-      <!-- GRINDING -->
-      <div class="service-card rounded-xl overflow-hidden bg-white shadow-md border border-gray-200">
-        <img src="images/grinding.png" class="w-full h-40 object-cover">
-        <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 text-[#0A1F44]">Grinding & Finishing</h3>
-          <p class="text-sm text-gray-600">
-            Surface finishing, polishing, and coating.
+      <div class="service-card">
+        <div style="overflow:hidden; height:160px;">
+          <img src="images/grinding.png" alt="Grinding & Finishing" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div style="padding:22px;">
+          <h3 style="font-size:1.05rem; color:var(--navy); margin-bottom:8px;">Grinding & Finishing</h3>
+          <p style="font-size:0.83rem; color:#666; line-height:1.65;">
+            Precision surface finishing, cylindrical grinding, polishing, and protective coatings to meet stringent dimensional and aesthetic standards.
           </p>
         </div>
       </div>
 
-      <!-- ASSEMBLY -->
-      <div class="service-card rounded-xl overflow-hidden bg-white shadow-md border border-gray-200">
-        <img src="images/Assemble.png" class="w-full h-40 object-cover">
-        <div class="p-6">
-          <h3 class="font-bold text-lg mb-2 text-[#0A1F44]">Full Assembly</h3>
-          <p class="text-sm text-gray-600">
-            Rotameters, nebulizers & spray systems assembly.
+      <div class="service-card">
+        <div style="overflow:hidden; height:160px;">
+          <img src="images/Assemble.png" alt="Full Assembly" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div style="padding:22px;">
+          <h3 style="font-size:1.05rem; color:var(--navy); margin-bottom:8px;">Full Assembly</h3>
+          <p style="font-size:0.83rem; color:#666; line-height:1.65;">
+            Complete build and integration of multi-component systems including Rotameters, Fog Nebulizers, and Industrial Spray Systems.
           </p>
         </div>
       </div>
 
     </div>
-
   </div>
 </section>
-<!-- PRODUCTS -->
-<section id="products" class="bg-white py-20">
-  <div class="max-w-6xl mx-auto text-center px-6">
 
-    <h2 class="text-4xl font-bold mb-4">Our Products</h2>
-    <p class="text-gray-600 mb-12">
-      Precision-engineered components designed for performance and reliability.
-    </p>
 
-    <!-- MAIN CAROUSEL -->
-    <div class="relative flex justify-center items-center">
+<!-- ═══════════════════════════════════════════ CLIENTS ═══════════ -->
+<section id="clients" style="background:#f9f9fb;">
+  <div style="max-width:1280px; margin:0 auto; padding:0 28px;">
+    <div style="text-align:center; margin-bottom:44px;">
+      <span class="section-label">Our Clientele</span>
+      <h2 style="font-size:2.4rem; color:var(--navy);">Trusted by Industry Leaders</h2>
+      <p style="color:#666; max-width:560px; margin:10px auto 0; font-size:0.9rem; line-height:1.7;">
+        Our reputation for reliability and technical mastery has earned us long-standing partnerships with esteemed organisations across India.
+      </p>
+    </div>
 
-      <!-- LEFT IMAGE -->
-      <img id="c-left"
-        class="hidden md:block w-48 h-72 object-cover opacity-30 scale-90 rounded-xl transition duration-500">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:36px;">
+      <div class="client-logo-card">
+        <div style="font-size:1.6rem; margin-bottom:8px;">🏭</div>
+        <div>SPM Instrument India Pvt Ltd</div>
+        <div style="font-size:0.75rem; color:#888; margin-top:4px; font-weight:400;">Instrumentation</div>
+      </div>
+      <div class="client-logo-card">
+        <div style="font-size:1.6rem; margin-bottom:8px;">🔬</div>
+        <div>Elico Ltd</div>
+        <div style="font-size:0.75rem; color:#888; margin-top:4px; font-weight:400;">Scientific Instruments</div>
+      </div>
+      <div class="client-logo-card">
+        <div style="font-size:1.6rem; margin-bottom:8px;">⚙️</div>
+        <div>ECL Magtronics Pvt Ltd</div>
+        <div style="font-size:0.75rem; color:#888; margin-top:4px; font-weight:400;">Electronics</div>
+      </div>
+      <div class="client-logo-card">
+        <div style="font-size:1.6rem; margin-bottom:8px;">🧪</div>
+        <div>Spectrochem Instruments Pvt Ltd</div>
+        <div style="font-size:0.75rem; color:#888; margin-top:4px; font-weight:400;">Analytical Instruments</div>
+      </div>
+      <div class="client-logo-card">
+        <div style="font-size:1.6rem; margin-bottom:8px;">📡</div>
+        <div>Ace Instruments</div>
+        <div style="font-size:0.75rem; color:#888; margin-top:4px; font-weight:400;">Cleanroom & Monitoring</div>
+      </div>
+    </div>
 
-      <!-- MAIN IMAGE -->
-      <div class="relative">
-        <img id="c-main"
-          class="w-80 h-[420px] object-cover rounded-2xl shadow-xl transition duration-500">
+    <div style="background:var(--navy); color:white; border-radius:14px; padding:28px 32px; display:flex; align-items:flex-start; gap:20px;">
+      <div style="font-size:2rem; flex-shrink:0;">📌</div>
+      <div>
+        <p style="font-weight:600; font-size:0.95rem; margin-bottom:6px;">Specialized Capability — Ace Instruments</p>
+        <p style="font-size:0.85rem; color:rgba(255,255,255,0.7); line-height:1.7;">
+          We hold specialized capability to supply precision-machined parts for <strong style="color:white;">Ace Instruments</strong>, directly supporting their range of cleanroom monitoring and environmental technology solutions.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- overlay text -->
-        <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg text-sm">
-          Precision Component
+
+<!-- ═══════════════════════════════════════════ PRODUCTS ═══════════ -->
+<section id="products" style="background:white;">
+  <div style="max-width:1280px; margin:0 auto; padding:0 28px;">
+    <div style="text-align:center; margin-bottom:44px;">
+      <span class="section-label">What We Make</span>
+      <h2 style="font-size:2.4rem; color:var(--navy);">Our Products</h2>
+      <p style="color:#666; max-width:500px; margin:10px auto 0; font-size:0.9rem; line-height:1.7;">
+        Precision-engineered components crafted for performance, reliability, and repeatability.
+      </p>
+    </div>
+
+    <!-- SWIPE CAROUSEL -->
+    <div style="max-width:500px; margin:0 auto;">
+      <div class="carousel-wrapper" id="carouselWrapper">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <img src="images/prod1.jpeg" alt="Product 1">
+            <div style="margin-top:16px; font-weight:600; color:var(--navy); font-size:0.92rem;">Precision Turned Component</div>
+            <div style="font-size:0.8rem; color:#888; margin-top:4px;">Brass / SS / Aluminum</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="images/prod2.jpeg" alt="Product 2">
+            <div style="margin-top:16px; font-weight:600; color:var(--navy); font-size:0.92rem;">Machined Engineering Part</div>
+            <div style="font-size:0.8rem; color:#888; margin-top:4px;">Custom Job Work</div>
+          </div>
         </div>
       </div>
 
-      <!-- RIGHT IMAGE -->
-      <img id="c-right"
-        class="hidden md:block w-48 h-72 object-cover opacity-30 scale-90 rounded-xl transition duration-500">
-
+      <!-- Dots + Nav -->
+      <div style="display:flex; justify-content:center; align-items:center; gap:24px; margin-top:24px;">
+        <button onclick="carouselMove(-1)" style="background:var(--navy); color:white; border:none; width:38px; height:38px; border-radius:50%; cursor:pointer; font-size:1rem; transition:background 0.2s;" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--navy)'">←</button>
+        <div id="carouselDots" style="display:flex; gap:8px; align-items:center;"></div>
+        <button onclick="carouselMove(1)" style="background:var(--navy); color:white; border:none; width:38px; height:38px; border-radius:50%; cursor:pointer; font-size:1rem; transition:background 0.2s;" onmouseover="this.style.background='var(--red)'" onmouseout="this.style.background='var(--navy)'">→</button>
+      </div>
     </div>
-
-    <!-- NAV BUTTONS -->
-    <div class="flex justify-center gap-6 mt-8">
-      <button onclick="carouselNav(-1)"
-        class="bg-gray-200 px-4 py-2 rounded-full hover:bg-gray-300 transition">
-        ←
-      </button>
-
-      <button onclick="carouselNav(1)"
-        class="bg-gray-200 px-4 py-2 rounded-full hover:bg-gray-300 transition">
-        →
-      </button>
-    </div>
-
-    <!-- THUMBNAILS -->
-    <div id="thumbContainer" class="flex justify-center gap-4 mt-8 flex-wrap"></div>
-
   </div>
 </section>
 
-<!-- LOCATION -->
-<section id="location" class="bg-gray-50">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center w-full">
 
-    <!-- LEFT -->
+<!-- ═══════════════════════════════════════════ CAPABILITIES ═══════════ -->
+<section id="capabilities" style="background:#f9f9fb;">
+  <div style="max-width:1280px; margin:0 auto; padding:0 28px;">
+    <div style="text-align:center; margin-bottom:44px;">
+      <span class="section-label">At a Glance</span>
+      <h2 style="font-size:2.4rem; color:var(--navy);">Our Capabilities</h2>
+    </div>
+
+    <div style="overflow-x:auto;">
+      <table class="cap-table" style="width:100%; border-collapse:collapse; border-radius:12px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+        <thead>
+          <tr>
+            <th>Operation</th>
+            <th>Materials</th>
+            <th>Key Industries</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>CNC Turning</strong></td>
+            <td>Brass, Stainless Steel, Aluminum, Copper</td>
+            <td>Electronics, Medical, Aerospace</td>
+          </tr>
+          <tr>
+            <td><strong>CNC Milling</strong></td>
+            <td>Steel, Titanium, Delrin, Aluminum</td>
+            <td>Aerospace, Industrial, Defence</td>
+          </tr>
+          <tr>
+            <td><strong>Grinding & Finishing</strong></td>
+            <td>All Metals & Engineering Plastics</td>
+            <td>Medical, Electronics, Precision</td>
+          </tr>
+          <tr>
+            <td><strong>Full Assembly</strong></td>
+            <td>Multi-Component Systems</td>
+            <td>Flow Meters, Nebulizers, Spray</td>
+          </tr>
+          <tr>
+            <td><strong>Specialised Parts</strong></td>
+            <td>Custom Components per Drawing</td>
+            <td>Ace Instruments, R&D Support</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Materials -->
+    <div style="margin-top:36px; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div style="background:white; border-radius:12px; padding:24px; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+        <h3 style="font-size:1rem; color:var(--navy); margin-bottom:12px; font-family:'DM Sans',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">⚙ Metals</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Brass</span>
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Aluminum</span>
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Stainless Steel</span>
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Steel</span>
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Copper</span>
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Surgical Titanium</span>
+        </div>
+      </div>
+      <div style="background:white; border-radius:12px; padding:24px; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+        <h3 style="font-size:1rem; color:var(--navy); margin-bottom:12px; font-family:'DM Sans',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">🔩 Engineering Plastics</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <span style="background:#fff5f5; color:var(--red); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Delrin (Acetal)</span>
+          <span style="background:#fff5f5; color:var(--red); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">High-Performance Polymers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ LOCATION ═══════════ -->
+<section id="location" style="background:white;">
+  <div style="max-width:1280px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;">
+
     <div>
-      <h2 class="text-4xl font-bold mb-6">Visit Our Facility</h2>
-
-      <p class="text-gray-600 mb-6">
-        Our manufacturing unit is located in Hyderabad, equipped to handle precision machining, assembly, and engineering solutions for multiple industries.
+      <span class="section-label">Find Us</span>
+      <h2 style="font-size:2.4rem; color:var(--navy); margin-bottom:18px;">Visit Our Facility</h2>
+      <p style="color:#666; line-height:1.75; margin-bottom:24px; font-size:0.9rem;">
+        Our manufacturing unit in Hyderabad is fully equipped for precision machining, assembly, and engineering solutions serving multiple industries.
       </p>
 
-      <div class="space-y-4 text-sm">
-
-        <p>
-          <span class="font-semibold text-[#0A1F44]">📍 Address:</span><br>
-          Shop No. 7524, Hanuman Temple,<br>
-          Near Old Airport Road,<br>
-          Nagarjuna Colony, Gautam Nagar,<br>
-          Hyderabad – 500011
-        </p>
-
-        <p>
-          <span class="font-semibold text-[#0A1F44]">📞 Phone:</span><br>
-          +91 9440361856
-        </p>
-
-        <p>
-          <span class="font-semibold text-[#0A1F44]">📧 Email:</span><br>
-          mountengineersmadhu@gmail.com
-        </p>
-
+      <div style="display:flex; flex-direction:column; gap:16px; font-size:0.88rem;">
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <span style="color:var(--red); font-size:1.1rem; margin-top:2px;">📍</span>
+          <div>
+            <div style="font-weight:600; color:var(--navy); margin-bottom:4px;">Address</div>
+            <div style="color:#555; line-height:1.65;">
+              Shop No. 7524, Hanuman Temple,<br>
+              Near Old Airport Road, Nagarjuna Colony,<br>
+              Gautam Nagar, Hyderabad – 500011
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <span style="color:var(--red); font-size:1.1rem;">📞</span>
+          <div>
+            <div style="font-weight:600; color:var(--navy); margin-bottom:2px;">Phone</div>
+            <a href="tel:+919440361856" style="color:#555; text-decoration:none;">+91 94403 61856</a>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <span style="color:var(--red); font-size:1.1rem;">✉</span>
+          <div>
+            <div style="font-weight:600; color:var(--navy); margin-bottom:2px;">Email</div>
+            <a href="mailto:mountengineersmadhu@gmail.com" style="color:#555; text-decoration:none;">mountengineersmadhu@gmail.com</a>
+          </div>
+        </div>
       </div>
 
-      <!-- BUTTON -->
       <a href="https://maps.app.goo.gl/ZHacvuJkeJHWjWYW9" target="_blank"
-         class="inline-block mt-6 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition">
-        Get Directions
+         style="display:inline-block; margin-top:24px; background:var(--red); color:white; padding:12px 26px; border-radius:8px; font-weight:600; font-size:0.88rem; text-decoration:none; transition:background 0.25s;"
+         onmouseover="this.style.background='#c42020'" onmouseout="this.style.background='var(--red)'">
+        Get Directions →
       </a>
     </div>
 
-    <!-- MAP -->
-    <div class="rounded-xl overflow-hidden shadow-lg">
-      <iframe 
+    <div style="border-radius:16px; overflow:hidden; box-shadow:0 10px 35px rgba(0,0,0,0.1);">
+      <iframe
         src="https://www.google.com/maps?q=Gautam%20Nagar%20Hyderabad&output=embed"
-        class="w-full h-[350px] border-0">
-      </iframe>
+        style="width:100%; height:350px; border:0;" loading="lazy"></iframe>
     </div>
 
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="bg-gray-100">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center w-full">
 
-    <!-- LEFT SIDE -->
-    <div>
-      <h2 class="text-4xl font-bold mb-6">Request a Quote</h2>
+<!-- ═══════════════════════════════════════════ CONTACT ═══════════ -->
+<section id="contact" style="background:#f9f9fb;">
+  <div style="max-width:1280px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;">
 
-      <p class="text-gray-600 mb-6">
-        Have a requirement? Share your details and our team will get back to you with a customized quote.
+    <div style="padding-top:8px;">
+      <span class="section-label">Get in Touch</span>
+      <h2 style="font-size:2.4rem; color:var(--navy); margin-bottom:16px;">Request a Quote</h2>
+      <p style="color:#666; line-height:1.75; margin-bottom:24px; font-size:0.9rem;">
+        Share your requirements with us and our engineering team will respond with a tailored, competitive quote — typically within 24 hours.
       </p>
 
-      <div class="space-y-4 text-sm">
-
-        <p><span class="font-semibold text-[#0A1F44]">📞 Phone:</span><br>
-        +91 9440361856</p>
-
-        <p><span class="font-semibold text-[#0A1F44]">📧 Email:</span><br>
-        mountengineersmadhu@gmail.com</p>
-
-        <p><span class="font-semibold text-[#0A1F44]">⚙️ Services:</span><br>
-        CNC Turning, Milling, Grinding, Assembly</p>
-
+      <div style="display:flex; flex-direction:column; gap:12px; font-size:0.88rem;">
+        <div><span style="font-weight:600; color:var(--navy);">📞 Phone:</span> <a href="tel:+919440361856" style="color:#555; text-decoration:none; margin-left:6px;">+91 94403 61856</a></div>
+        <div><span style="font-weight:600; color:var(--navy);">✉ Email:</span> <a href="mailto:mountengineersmadhu@gmail.com" style="color:#555; text-decoration:none; margin-left:6px;">mountengineersmadhu@gmail.com</a></div>
+        <div><span style="font-weight:600; color:var(--navy);">⚙ Services:</span> <span style="color:#555; margin-left:6px;">CNC Turning, Milling, Grinding & Assembly</span></div>
+        <div><span style="font-weight:600; color:var(--navy);">⏱ Response:</span> <span style="color:#555; margin-left:6px;">Within 24 hours</span></div>
       </div>
     </div>
 
-    <!-- FORM -->
     <form action="https://formspree.io/f/xlgabkvp" method="POST"
-      class="bg-white p-8 rounded-xl shadow-lg space-y-4">
+      style="background:white; padding:36px; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,0.08); display:flex; flex-direction:column; gap:14px;">
 
-  <input 
-    type="text" 
-    name="name"
-    placeholder="Your Name" 
-    required
-    class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+      <input type="text" name="name" placeholder="Your Full Name" required
+        style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;"
+        onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
 
-  <input 
-    type="email" 
-    name="email"
-    placeholder="Email Address" 
-    required
-    class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+      <input type="email" name="email" placeholder="Email Address" required
+        style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;"
+        onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
 
-  <input 
-    type="text" 
-    name="phone"
-    placeholder="Phone Number" 
-    class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+      <input type="text" name="phone" placeholder="Phone Number"
+        style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;"
+        onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
 
-  <textarea 
-    name="message"
-    rows="4"
-    placeholder="Describe your requirement..."
-    required
-    class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
-  </textarea>
+      <input type="text" name="company" placeholder="Company / Organisation Name"
+        style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;"
+        onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
 
-  <!-- ✅ FIXED -->
-  <input type="hidden" name="_next" value="https://mount-engineers.vercel.app/thankyou.html">
-  <!-- ✅ ADD THIS -->
-  <input type="hidden" name="_subject" value="New Quote Request - Mount Engineers">
+      <textarea name="message" rows="4" placeholder="Describe your requirement (material, quantity, drawing reference, etc.)..." required
+        style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; resize:vertical; transition:border 0.2s;"
+        onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'"></textarea>
 
-  <button 
-    type="submit"
-    class="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition">
-    Get Quote
-  </button>
+      <input type="hidden" name="_next" value="https://mount-engineers.vercel.app/thankyou.html">
+      <input type="hidden" name="_subject" value="New Quote Request – Mount Engineers">
 
-</form>
+      <button type="submit"
+        style="width:100%; background:var(--red); color:white; padding:13px; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-weight:600; font-size:0.92rem; cursor:pointer; transition:background 0.25s; letter-spacing:0.03em;"
+        onmouseover="this.style.background='#c42020'" onmouseout="this.style.background='var(--red)'">
+        Submit Quote Request
+      </button>
+    </form>
 
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="bg-[#0A1F44] text-white text-center py-4">
-  © Mount Engineers
+
+<!-- ═══════════════════════════════════════════ FOOTER ═══════════ -->
+<footer style="background:var(--navy); color:rgba(255,255,255,0.6); text-align:center; padding:20px 28px; font-size:0.8rem;">
+  <span style="color:white; font-weight:600;">© Mount Engineers</span> · Precision CNC Machining, Hyderabad ·
+  <a href="tel:+919440361856" style="color:var(--gold); text-decoration:none; margin-left:6px;">+91 94403 61856</a>
 </footer>
 
+
+<!-- ═══════════════════════════════════════════ SCRIPTS ═══════════ -->
 <script>
-const images = [
-  "images/prod1.jpeg",
-  "images/prod2.jpeg"
-];
+// ── NAVBAR SCROLL EFFECT
 
-let current = 0;
 
-function updateCarousel() {
-  const main = document.getElementById("c-main");
-  const left = document.getElementById("c-left");
-  const right = document.getElementById("c-right");
+// ── ACTIVE NAV LINK
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('#navLinks a');
 
-  main.src = images[current];
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 130) current = sec.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
 
-  left.src = images[(current - 1 + images.length) % images.length];
-  right.src = images[(current + 1) % images.length];
-
-  updateThumbs();
+// ── INDUSTRY CARD AUTO HIGHLIGHT
+const icards = document.querySelectorAll('.industry-card');
+let icIdx = 0;
+function highlightIC() {
+  icards.forEach(c => c.classList.remove('active'));
+  icards[icIdx].classList.add('active');
+  icIdx = (icIdx + 1) % icards.length;
 }
+highlightIC();
+setInterval(highlightIC, 2200);
 
-function carouselNav(dir) {
-  current = (current + dir + images.length) % images.length;
+// ── PRODUCT CAROUSEL
+const images = [
+  { src: 'images/prod1.jpeg', title: 'Precision Turned Component', sub: 'Brass / SS / Aluminum' },
+  { src: 'images/prod2.jpeg', title: 'Machined Engineering Part', sub: 'Custom Job Work' }
+];
+let cIdx = 0;
+const track = document.getElementById('carouselTrack');
+const dotsContainer = document.getElementById('carouselDots');
+
+function buildCarousel() {
+  track.innerHTML = '';
+  images.forEach((img, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide';
+    slide.innerHTML = `
+      <img src="${img.src}" alt="${img.title}" style="width:300px;height:400px;object-fit:cover;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,0.15);">
+      <div style="margin-top:16px;font-weight:600;color:var(--navy);font-size:0.92rem;">${img.title}</div>
+      <div style="font-size:0.8rem;color:#888;margin-top:4px;">${img.sub}</div>
+    `;
+    track.appendChild(slide);
+  });
+  buildDots();
   updateCarousel();
 }
 
-function updateThumbs() {
-  const container = document.getElementById("thumbContainer");
-  container.innerHTML = "";
-
-  images.forEach((img, i) => {
-    const thumb = document.createElement("img");
-    thumb.src = img;
-    thumb.className = `w-20 h-28 object-cover rounded cursor-pointer transition 
-      ${i === current ? "border-2 border-red-500 scale-105" : "opacity-60"}`;
-
-    thumb.onclick = () => {
-      current = i;
-      updateCarousel();
-    };
-
-    container.appendChild(thumb);
+function buildDots() {
+  dotsContainer.innerHTML = '';
+  images.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => { cIdx = i; updateCarousel(); };
+    dotsContainer.appendChild(dot);
   });
 }
 
-// INIT
-updateCarousel();
+function updateCarousel() {
+  track.style.transform = `translateX(-${cIdx * 100}%)`;
+  document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === cIdx);
+  });
+}
+
+function carouselMove(dir) {
+  cIdx = (cIdx + dir + images.length) % images.length;
+  updateCarousel();
+}
+
+// Touch swipe
+let touchStartX = 0;
+const wrapper = document.getElementById('carouselWrapper');
+wrapper.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+wrapper.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) carouselMove(diff > 0 ? 1 : -1);
+});
+
+buildCarousel();
+
+// Auto-advance carousel
+setInterval(() => carouselMove(1), 4000);
 </script>
+
+<style>
+/* Responsive two-col grids → single col on mobile */
+@media (max-width: 768px) {
+  .md-grid,
+  [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  .nav-bottom { display: none; }
+}
+</style>
 
 </body>
 </html>
