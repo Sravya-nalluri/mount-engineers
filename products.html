@@ -8,7 +8,7 @@
 
 <style>
   :root {
-    --navy: #010d22;
+    --navy: #151d29;
     --red: #e63030;
     --red-dark: #c42020;
     --gold: #eeece5;
@@ -19,6 +19,14 @@
   h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
   /* ── NAVBAR ── */
+
+  .brand-mount {
+  color: var(--red);
+}
+
+.brand-engineers {
+  color: white;
+}
   #navbar {
     background: var(--navy);
     box-shadow: 0 2px 12px rgba(0,0,0,0.2);
@@ -62,11 +70,11 @@
   }
 
   .nav-brand-sub {
-    font-size: 0.62rem;
+    font-size: 0.42rem;
     color: var(--gold);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 300;
   }
 
   .back-btn {
@@ -368,8 +376,10 @@
       <a href="index.html" class="nav-brand">
         <img src="images/logo.jpeg" alt="Mount Engineers Logo">
         <div>
-          <div class="nav-brand-text">MOUNT ENGINEERS</div>
-          <div class="nav-brand-sub">Precision CNC Machining · Since 1990</div>
+<div class="nav-brand-text">
+  <span class="brand-mount">MOUNT</span>
+  <span class="brand-engineers">ENGINEERS</span>
+</div>          <div class="nav-brand-sub">Precision CNC Machining · Since 1990</div>
         </div>
       </a>
       <a href="index.html" class="back-btn">← Back to Home</a>
