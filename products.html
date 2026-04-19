@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Products – Mount Engineers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #010d22;
+    --red: #e63030;
+    --red-dark: #c42020;
+    --gold: #eeece5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; background: #eae9f1; }
+  h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+  /* ── NAVBAR ── */
+  #navbar {
+    background: var(--navy);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .nav-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-brand img {
+    height: 42px;
+    border-radius: 6px;
+    background: white;
+    padding: 2px;
+  }
+
+  .nav-brand-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: rgb(245, 10, 10);
+  }
+
+  .nav-brand-sub {
+    font-size: 0.62rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .back-btn {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.25s;
+  }
+
+  .back-btn:hover { background: var(--red); border-color: var(--red); }
+
+  /* ── HERO ── */
+  .page-hero {
+    background: var(--navy);
+    padding: 60px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 30%, rgba(230,48,48,0.07) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .page-hero-inner { position: relative; max-width: 700px; margin: 0 auto; }
+
+  /* ── FILTER TABS ── */
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 32px 28px 0;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .filter-btn {
+    padding: 8px 22px;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 2px solid #ddd;
+    background: white;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover { border-color: var(--red); color: var(--red); }
+  .filter-btn.active { background: var(--red); border-color: var(--red); color: white; }
+
+  /* ── PRODUCT GRID ── */
+  .products-grid {
+    max-width: 1280px;
+    margin: 32px auto 0;
+    padding: 0 28px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    border: 1px solid #eee;
+    transition: all 0.35s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.13);
+    border-color: var(--red);
+  }
+
+  .product-card-img {
+    position: relative;
+    overflow: hidden;
+    height: 240px;
+    background: #f5f5f5;
+  }
+
+  .product-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+    display: block;
+  }
+
+  .product-card:hover .product-card-img img { transform: scale(1.07); }
+
+  .product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--navy);
+    color: white;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .product-card-body {
+    padding: 20px 22px 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-card-body h3 {
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+  }
+
+  .product-card-body p {
+    font-size: 0.82rem;
+    color: #666;
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 16px;
+  }
+
+  .product-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .product-spec-tag {
+    background: #f0f4ff;
+    color: var(--navy);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .product-cta {
+    display: block;
+    background: var(--navy);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s;
+    margin-top: auto;
+  }
+
+  .product-cta:hover { background: var(--red); }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox-inner {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lightbox-img {
+    background: #f5f5f5;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .lightbox-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  .lightbox-body {
+    padding: 36px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    z-index: 10;
+  }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--navy);
+    padding: 60px 28px;
+    text-align: center;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #000d1e;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 20px 28px;
+    font-size: 0.8rem;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); padding: 0 16px 60px; }
+    .filter-bar { padding: 24px 16px 0; }
+    .lightbox-inner { grid-template-columns: 1fr; max-height: 85vh; }
+    .lightbox-img { min-height: 200px; max-height: 250px; }
+    .lightbox-body { padding: 24px; }
+    .page-hero { padding: 40px 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .product-card-img { height: 180px; }
+    .product-card-body { padding: 14px 16px 16px; }
+    .product-card-body h3 { font-size: 0.88rem; }
+  }
+
+  /* Hidden card */
+  .product-card.hidden {
+    display: none;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════ NAVBAR ═══════════════════════ -->
+<header id="navbar">
+  <div class="nav-inner">
+    <div class="nav-top">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.jpeg" alt="Mount Engineers Logo">
+        <div>
+          <div class="nav-brand-text">MOUNT ENGINEERS</div>
+          <div class="nav-brand-sub">Precision CNC Machining · Since 1990</div>
+        </div>
+      </a>
+      <a href="index.html" class="back-btn">← Back to Home</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════ PAGE HERO ═══════════════════════ -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="section-label" style="color:#C9A84C;">Our Products</span>
+    <h1 style="font-size:clamp(1.8rem,4vw,2.8rem); color:white; margin-bottom:14px; line-height:1.2;">
+      Precision-Engineered Components
+    </h1>
+    <p style="color:rgba(255,255,255,0.7); font-size:0.92rem; line-height:1.7; max-width:540px; margin:0 auto;">
+      Explore our range of CNC-machined parts crafted from Brass, Aluminum, Stainless Steel, Copper, Titanium, and engineering plastics — designed to meet the highest industrial standards.
+    </p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ FILTER BAR ═══════════════════════ -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All Products</button>
+  <button class="filter-btn" data-filter="turned">CNC Turned</button>
+  <button class="filter-btn" data-filter="milled">CNC Milled</button>
+  <button class="filter-btn" data-filter="assembly">Assembly</button>
+  <button class="filter-btn" data-filter="medical">Medical Grade</button>
+  <button class="filter-btn" data-filter="electronics">Electronics</button>
+</div>
+
+
+<!-- ═══════════════════════ PRODUCTS GRID ═══════════════════════ -->
+<div class="products-grid" id="productsGrid">
+
+  <div class="product-card" data-category="turned electronics"
+       data-title="Brass Precision Connector Body"
+       data-desc="High-conductivity brass connector body machined to tight tolerances for electronic and instrumentation applications. Ideal for signal connectors, terminal housings, and sensor bodies."
+       data-specs='["Brass","±0.02mm","CNC Turning","Electronics"]'
+       data-img="images/prod1.jpeg"
+       onclick="openLightbox(this)">
+    <div class="product-card-img">
+      <img src="images/prod1.jpeg" alt="Brass Precision Connector Body" loading="lazy">
+      <div class="product-badge">CNC Turned</div>
+    </div>
+    <div class="product-card-body">
+      <h3>Brass Precision Connector Body</h3>
+      <p>High-conductivity brass connector body for electronic and instrumentation applications.</p>
+      <div class="product-specs">
+        <span class="product-spec-tag">Brass</span>
+        <span class="product-spec-tag">±0.02mm</span>
+        <span class="product-spec-tag">Electronics</span>
+      </div>
+      <a href="#contact" class="product-cta" onclick="event.stopPropagation()">Request Quote</a>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="turned medical"
+       data-title="Surgical Stainless Steel Component"
+       data-desc="Precision-turned surgical-grade SS316L components for medical instruments and diagnostic devices. Manufactured under strict cleanliness and dimensional control protocols."
+       data-specs='["SS316L","±0.01mm","CNC Turning","Medical Grade"]'
+       data-img="images/prod2.jpeg"
+       onclick="openLightbox(this)">
+    <div class="product-card-img">
+      <img src="images/prod2.jpeg" alt="Surgical SS Component" loading="lazy">
+      <div class="product-badge">Medical Grade</div>
+    </div>
+    <div class="product-card-body">
+      <h3>Surgical SS Component</h3>
+      <p>SS316L precision component for diagnostic instruments and surgical tools.</p>
+      <div class="product-specs">
+        <span class="product-spec-tag">SS316L</span>
+        <span class="product-spec-tag">±0.01mm</span>
+        <span class="product-spec-tag">Medical</span>
+      </div>
+      <a href="#contact" class="product-cta" onclick="event.stopPropagation()">Request Quote</a>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="turned electronics"
+       data-title="Copper Electrical Terminal"
+       data-desc="High-purity copper electrical terminals for power distribution and connectivity applications. Excellent conductivity with precision threading and surface finish."
+       data-specs='["Copper","±0.02mm","CNC Turning","High Conductivity"]'
+       data-img="images/turning.png"
+       onclick="openLightbox(this)">
+    <div class="product-card-img">
+      <img src="images/turning.png" alt="Copper Electrical Terminal" loading="lazy">
+      <div class="product-badge">CNC Turned</div>
+    </div>
+    <div class="product-card-body">
+      <h3>Copper Electrical Terminal</h3>
+      <p>High-purity copper terminals with precision threading for power distribution systems.</p>
+      <div class="product-specs">
+        <span class="product-spec-tag">Copper</span>
+        <span class="product-spec-tag">±0.02mm</span>
+        <span class="product-spec-tag">Electrical</span>
+      </div>
+      <a href="#contact" class="product-cta" onclick="event.stopPropagation()">Request Quote</a>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="milled"
+       data-title="Aluminum Milled Enclosure Block"
+       data-desc="3-axis CNC milled aluminum housing block for electronics and instrumentation enclosures. Complex pocket geometries with tight flatness tolerances and anodize-ready finish."
+       data-specs='["Aluminum 6061","±0.03mm","CNC Milling","Industrial"]'
+       data-img="images/milling.png"
+       onclick="openLightbox(this)">
+    <div class="product-card-img">
+      <img src="images/milling.png" alt="Aluminum Milled Block" loading="lazy">
+      <div class="product-badge">CNC Milled</div>
+    </div>
+    <div class="product-card-body">
+      <h3>Aluminum Milled Enclosure Block</h3>
+      <p>Precisely milled aluminum housing with complex pocket geometries and anodize-ready finish.</p>
+      <div class="product-specs">
+        <span class="product-spec-tag">Aluminum 6061</span>
+        <span class="product-spec-tag">±0.03mm</span>
+        <span class="product-spec-tag">Milling</span>
+      </div>
+      <a href="#contact" class="product-cta" onclick="event.stopPropagation()">Request Quote</a>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="assembly"
+       data-title="Rotameter Flow Meter Assembly"
+       data-desc="Fully assembled variable-area rotameter for industrial flow measurement. Includes precision-machined brass body, borosilicate float tube, end fittings, and scale plate — ready to install."
+       data-specs='["Brass Body","Full Assembly","Flow Measurement","Industrial"]'
+       data-img="images/Assemble.png"
+       onclick="openLightbox(this)">
+    <div class="product-card-img">
+      <img src="images/Assemble.png" alt="Rotameter Assembly" loading="lazy">
+      <div class="product-badge">Assembly</div>
+    </div>
+    <div class="product-card-body">
+      <h3>Rotameter Flow Meter Assembly</h3>
+      <p>Complete variable-area rotameter assembly for industrial flow measurement applications.</p>
+      <div class="product-specs">
+        <span class="product-spec-tag">Brass Body</span>
+        <span class="product-spec-tag">Full Assembly</span>
+        <span class="product-spec-tag">Flow Control</span>
+      </div>
+      <a href="#contact" class="product-cta" onclick="event.stopPropagation()">Request Quote</a>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="turned medical"
+       data-title="Titanium Implant-Grade Component"
+       data-desc="Machined from surgical Grade 5 Titanium (Ti-6Al-4V), this component is used in orthopaedic and surgical implant sub-assemblies. Excellent biocompatibility, corrosion resistance, and strength-to-weight ratio."
+       data-specs='["Ti-6Al-4V","±0.01mm","CNC Turning","Surgical Grade"]'
+       data-img="images/grinding.png"
+       onclick="openLightbox(this)">
+    <div class="product-card-img">
+      <img src="images/grinding.png" alt="Titanium Component" loading="lazy">
+      <div class="product-badge">Surgical Grade</div>
+    </div>
+    <div class="product-card-body">
+      <h3>Titanium Implant-Grade Component</h3>
+      <p>Grade 5 Ti-6Al-4V component for orthopaedic and surgical implant sub-assemblies.</p>
+      <div class="product-specs">
+        <span class="product-spec-tag">Ti-6Al-4V</span>
+        <span class="product-spec-tag">±0.01mm</span>
+        <span class="product-spec-tag">Biocompatible</span>
+      </div>
+      <a href="#contact" class="product-cta" onclick="event.stopPropagation()">Request Quote</a>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="turned electronics"
+       data-title="Delrin Precision Insulator"
+       data-desc="Precision-turned Delrin (Acetal) insulators for high-voltage electronic assemblies. Low moisture absorption, excellent dimensional stability, and machinability for tight-tolerance profiles."
+       data-specs='["Delrin (Acetal)","±0.02mm","CNC Turning","Electronics"]'
+       data-img="images/prod1.jpeg"
+       onclick="openLightbox(this)">
+    <div class="product-card-img">
+      <img src="images/prod1.jpeg" alt="Delrin Insulator" loading="lazy">
+      <div class="product-badge">Engineering Plastic</div>
+    </div>
+    <div class="product-card-body">
+      <h3>Delrin Precision Insulator</h3>
+      <p>Tight-tolerance Delrin insulators for high-voltage electronic and instrumentation use.</p>
+      <div class="product-specs">
+        <span class="product-spec-tag">Delrin</span>
+        <span class="product-spec-tag">±0.02mm</span>
+        <span class="product-spec-tag">Electronics</span>
+      </div>
+      <a href="#contact" class="product-cta" onclick="event.stopPropagation()">Request Quote</a>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="assembly"
+       data-title="Fog Nebulizer Assembly"
+       data-desc="Complete fog nebulizer assembly for medical oxygen delivery and respiratory therapy. Fully assembled and tested — includes precision-bored nozzle body, cap, and T-connector in medical-grade polymer and SS."
+       data-specs='["SS + Medical Polymer","Full Assembly","Medical","Respiratory"]'
+       data-img="images/prod2.jpeg"
+       onclick="openLightbox(this)">
+    <div class="product-card-img">
+      <img src="images/prod2.jpeg" alt="Fog Nebulizer Assembly" loading="lazy">
+      <div class="product-badge">Medical Assembly</div>
+    </div>
+    <div class="product-card-body">
+      <h3>Fog Nebulizer Assembly</h3>
+      <p>Complete nebulizer assembly for medical oxygen delivery and respiratory therapy applications.</p>
+      <div class="product-specs">
+        <span class="product-spec-tag">Medical Grade</span>
+        <span class="product-spec-tag">Full Assembly</span>
+        <span class="product-spec-tag">Respiratory</span>
+      </div>
+      <a href="#contact" class="product-cta" onclick="event.stopPropagation()">Request Quote</a>
+    </div>
+  </div>
+
+  <div class="product-card" data-category="milled electronics"
+       data-title="Custom Instrumentation Housing"
+       data-desc="Bespoke aluminium housing machined to client drawings for scientific instrument manufacturers including Elico and SPM. Precision-milled slots, threaded inserts, and tight flatness — ready for electronics integration."
+       data-specs='["Aluminum","±0.03mm","CNC Milling","Instrumentation"]'
+       data-img="images/milling.png"
+       onclick="openLightbox(this)">
+    <div class="product-card-img">
+      <img src="images/milling.png" alt="Custom Instrumentation Housing" loading="lazy">
+      <div class="product-badge">Custom Job Work</div>
+    </div>
+    <div class="product-card-body">
+      <h3>Custom Instrumentation Housing</h3>
+      <p>Bespoke machined housings for scientific instruments per client drawings and specifications.</p>
+      <div class="product-specs">
+        <span class="product-spec-tag">Aluminum</span>
+        <span class="product-spec-tag">Custom</span>
+        <span class="product-spec-tag">Instruments</span>
+      </div>
+      <a href="#contact" class="product-cta" onclick="event.stopPropagation()">Request Quote</a>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════ LIGHTBOX ═══════════════════════ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <div class="lightbox-img">
+      <img src="" alt="" id="lbImg">
+    </div>
+    <div class="lightbox-body">
+      <div>
+        <span class="section-label" id="lbBadge"></span>
+        <h2 style="font-size:1.5rem; color:var(--navy); margin-top:6px; line-height:1.3;" id="lbTitle"></h2>
+      </div>
+      <p style="color:#555; font-size:0.87rem; line-height:1.7;" id="lbDesc"></p>
+      <div>
+        <div style="font-size:0.75rem; font-weight:700; color:var(--navy); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px;">Specifications</div>
+        <div id="lbSpecs" style="display:flex; flex-wrap:wrap; gap:7px;"></div>
+      </div>
+      <a href="index.html#contact"
+         style="display:block; background:var(--red); color:white; text-align:center; padding:13px; border-radius:8px; font-weight:600; font-size:0.88rem; text-decoration:none; margin-top:auto;">
+        Request a Quote for This Product
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════ CTA BANNER ═══════════════════════ -->
+<div class="cta-banner">
+  <span class="section-label" style="color:#C9A84C;">Work With Us</span>
+  <h2 style="color:white; font-size:2rem; margin-bottom:14px;">Don't See Your Part Listed?</h2>
+  <p style="color:rgba(255,255,255,0.7); font-size:0.9rem; max-width:520px; margin:0 auto 28px; line-height:1.7;">
+    We manufacture to your exact drawings and specifications. Share your design and we'll deliver precision components in any material, any quantity.
+  </p>
+  <a href="index.html#contact" style="display:inline-block; background:var(--red); color:white; padding:13px 36px; border-radius:8px; font-weight:700; font-size:0.9rem; text-decoration:none; transition:background 0.25s;"
+     onmouseover="this.style.background='#c42020'" onmouseout="this.style.background='var(--red)'">
+    Send Us Your Requirement →
+  </a>
+</div>
+
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer>
+  <span style="color:white; font-weight:600;">© Mount Engineers</span> · Precision CNC Machining, Hyderabad ·
+  <a href="tel:+919440361856" style="color:var(--gold); text-decoration:none; margin-left:6px;">+91 94403 61856</a>
+</footer>
+
+
+<!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+<script>
+// ── FILTER
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.product-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    cards.forEach(card => {
+      const cats = card.dataset.category || '';
+      if (filter === 'all' || cats.includes(filter)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+
+// ── LIGHTBOX
+function openLightbox(card) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lbImg').src = card.dataset.img;
+  document.getElementById('lbImg').alt = card.dataset.title;
+  document.getElementById('lbTitle').textContent = card.dataset.title;
+  document.getElementById('lbDesc').textContent = card.dataset.desc;
+  document.getElementById('lbBadge').textContent = card.querySelector('.product-badge').textContent;
+
+  const specs = JSON.parse(card.dataset.specs);
+  const specsEl = document.getElementById('lbSpecs');
+  specsEl.innerHTML = specs.map(s => `<span style="background:#f0f4ff; color:var(--navy); font-size:0.75rem; font-weight:600; padding:4px 12px; border-radius:100px;">${s}</span>`).join('');
+
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if (!e || e.target === document.getElementById('lightbox') || e.currentTarget.classList.contains('lightbox-close')) {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
+});
+</script>
+
+</body>
+</html>
