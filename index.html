@@ -576,17 +576,41 @@
           <div><span style="font-weight:600; color:var(--navy);">⏱ Response:</span> <span style="color:#555; margin-left:6px;">Within 24 hours</span></div>
         </div>
       </div>
-      <form action="https://formspree.io/f/xlgabkvp" method="POST"
-        style="background:white; padding:36px; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,0.08); display:flex; flex-direction:column; gap:14px;">
-        <input type="text" name="name" placeholder="Your Full Name" required style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
-        <input type="email" name="email" placeholder="Email Address" required style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
-        <input type="text" name="phone" placeholder="Phone Number" style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
-        <input type="text" name="company" placeholder="Company / Organisation Name" style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
-        <textarea name="message" rows="4" placeholder="Describe your requirement (material, quantity, drawing reference, etc.)..." required style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; resize:vertical; transition:border 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'"></textarea>
-        <input type="hidden" name="_next" value="https://mount-engineers.vercel.app/thankyou.html">
-        <input type="hidden" name="_subject" value="New Quote Request – Mount Engineers">
-        <button type="submit" style="width:100%; background:var(--red); color:white; padding:13px; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-weight:600; font-size:0.92rem; cursor:pointer; transition:background 0.25s;" onmouseover="this.style.background='#c42020'" onmouseout="this.style.background='var(--red)'">Submit Quote Request</button>
-      </form>
+     <form id="quoteForm" action="https://formspree.io/f/xlgabkvp" method="POST"
+  style="background:white; padding:36px; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,0.08); display:flex; flex-direction:column; gap:14px;">
+
+  <input type="text" name="name" placeholder="Your Full Name" required
+    style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;"
+    onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
+
+  <input type="email" name="email" placeholder="Email Address" required
+    style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;"
+    onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
+
+  <input type="tel" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}"
+    title="Enter a valid 10-digit phone number"
+    style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;"
+    onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
+
+  <input type="text" name="company" placeholder="Company / Organisation Name" required
+    style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;"
+    onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
+
+  <textarea name="message" rows="4"
+    placeholder="Describe your requirement (material, quantity, drawing reference, etc.)..."
+    required
+    style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; resize:vertical; transition:border 0.2s;"
+    onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'"></textarea>
+
+  <input type="hidden" name="_subject" value="New Quote Request – Mount Engineers">
+
+  <button type="submit"
+    style="width:100%; background:var(--red); color:white; padding:13px; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-weight:600; font-size:0.92rem; cursor:pointer; transition:background 0.25s;"
+    onmouseover="this.style.background='#c42020'" onmouseout="this.style.background='var(--red)'">
+    Submit Quote Request
+  </button>
+
+</form>
     </div>
   </div>
 </section>
@@ -816,6 +840,30 @@ buildCarousel();
       display.innerHTML = "Selected Product: <strong>" + decoded + "</strong>";
     }
   }
-</script></body>
+</script>
+  <script>
+const form = document.getElementById("quoteForm");
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault(); // stop default redirect
+
+  const formData = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
+
+  if (response.ok) {
+    window.location.href = "thankyou.html"; // ✅ YOUR PAGE
+  } else {
+    alert("Something went wrong. Please try again.");
+  }
+});
+</script>
+</body>
 </html>
 
