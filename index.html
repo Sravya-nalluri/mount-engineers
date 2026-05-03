@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mount Engineers – Precision machining since 1990, Hyderabad</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #010d22;
+    --red: #e63030;
+    --red-dark: #c42020;
+    --gold: #eeece5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; }
+  html { scroll-behavior: smooth; }
+  h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+  .brand-mount { color: var(--red); }
+  .brand-engineers { color: white; }
+
+  #navbar {
+    background: var(--navy);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    position: sticky; top: 0; z-index: 1000;
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 28px;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .nav-top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0 6px; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-brand { display: flex; align-items: center; gap: 12px; }
+  .nav-brand img { height: 42px; border-radius: 6px; background: white; padding: 2px; }
+  .nav-brand-text {
+    font-family: 'Playfair Display', serif; font-weight: 800;
+    font-size: 1.15rem; color: rgb(245,10,10); letter-spacing: 0.03em; line-height: 1.2;
+  }
+  .nav-brand-sub {
+    font-family: 'DM Sans', sans-serif; font-size: 0.45rem;
+    color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 300;
+  }
+  .nav-contact-info {
+    display: flex; gap: 24px; align-items: center;
+    font-size: 0.78rem; color: rgba(255,255,255,0.8);
+  }
+  .nav-contact-info a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    display: flex; align-items: center; gap: 6px; transition: color 0.2s;
+  }
+  .nav-contact-info a:hover { color: var(--gold); }
+  .nav-bottom {
+    display: flex; justify-content: space-between; align-items: center; padding: 7px 0;
+  }
+  .nav-links { display: flex; gap: 22px; list-style: none; flex-wrap: wrap; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.82rem;
+    font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    padding-bottom: 2px; border-bottom: 2px solid transparent; transition: all 0.25s; white-space: nowrap;
+  }
+  .nav-links a:hover, .nav-links a.active { color: white; border-bottom-color: var(--red); }
+  .cta-btn {
+    background: var(--red) !important; color: white !important;
+    padding: 7px 20px !important; border-radius: 6px !important;
+    font-size: 0.8rem !important; font-weight: 600 !important;
+    letter-spacing: 0.04em !important; text-transform: uppercase !important;
+    border-bottom: none !important; transition: background 0.25s !important; text-decoration: none !important;
+  }
+  .cta-btn:hover { background: var(--red-dark) !important; }
+  .menu-toggle {
+    display: none; font-size: 1.6rem; color: white; cursor: pointer;
+    background: none; border: none; padding: 4px 8px;
+  }
+
+  section { padding: 80px 0; scroll-margin-top: 80px; }
+  .section-inner { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+  .section-header { text-align: center; margin-bottom: 48px; }
+
+  #hero {
+    min-height: 100vh; padding: 0; display: flex; align-items: center;
+    position: relative; background: var(--navy); overflow: hidden; scroll-margin-top: 0;
+  }
+  #hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(230,48,48,0.07) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  #hero img.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.2; }
+  .hero-content { position: relative; max-width: 1280px; margin: 0 auto; padding: 40px 28px; width: 100%; }
+  .hero-tag {
+    display: inline-block; background: rgba(42,33,10,0.15); border: 1px solid rgba(252,185,3,0.4);
+    color: var(--gold); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 100px; margin-bottom: 20px; font-weight: 600;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .f1 { animation: fadeUp 0.8s ease forwards; }
+  .f2 { animation: fadeUp 0.8s ease 0.25s forwards; opacity: 0; }
+  .f3 { animation: fadeUp 0.8s ease 0.5s forwards; opacity: 0; }
+  .f4 { animation: fadeUp 0.8s ease 0.75s forwards; opacity: 0; }
+
+  .section-label {
+    display: inline-block; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 10px;
+  }
+
+  .industry-card {
+    background: var(--navy); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 28px 24px; color: white; transition: all 0.35s ease; cursor: default;
+  }
+  .industry-card:hover { transform: translateY(-5px); box-shadow: 0 14px 35px rgba(0,0,0,0.3); border-color: var(--red); }
+  .industry-card.active { border-color: var(--red); box-shadow: 0 0 30px rgba(230,48,48,0.35); transform: translateY(-5px) scale(1.02); }
+
+  .service-card { background: white; border: 1px solid #eee; border-radius: 14px; overflow: hidden; transition: all 0.35s ease; }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 14px 35px rgba(0,0,0,0.12); border-color: var(--red); }
+  .service-card img { transition: transform 0.4s ease; }
+  .service-card:hover img { transform: scale(1.06); }
+
+  /* ── CAROUSEL ── */
+  .carousel-wrapper {
+    position: relative; overflow: hidden; cursor: grab; border-radius: 16px;
+  }
+  .carousel-wrapper:active { cursor: grabbing; }
+  .carousel-track { display: flex; transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .carousel-slide {
+    min-width: 100%; display: flex; flex-direction: column; align-items: center; padding-bottom: 10px;
+  }
+  .carousel-slide img {
+    width: 300px; height: 300px; object-fit: contain;
+    border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    background: #f5f5f5; padding: 12px;
+  }
+  .carousel-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #ccc;
+    transition: all 0.3s; cursor: pointer; border: none; padding: 0;
+  }
+  .carousel-dot.active { background: var(--red); width: 24px; border-radius: 4px; }
+
+  /* Category pill in carousel */
+  .carousel-pill {
+    display: inline-block; font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px; margin-bottom: 8px;
+  }
+  .pill-special { background: rgba(201,168,76,0.15); color: #a07c10; border: 1px solid rgba(201,168,76,0.4); }
+  .pill-product { background: #f0f4ff; color: var(--navy); border: 1px solid rgba(21,29,41,0.15); }
+
+  .client-logo-card {
+    background: white; border: 1px solid #eee; border-radius: 12px; padding: 20px 24px;
+    text-align: center; font-weight: 600; font-size: 0.88rem; color: var(--navy);
+    transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .client-logo-card:hover { border-color: var(--red); box-shadow: 0 6px 20px rgba(230,48,48,0.1); transform: translateY(-3px); }
+
+  .cap-table th {
+    background: var(--navy); color: white; padding: 12px 16px; text-align: left;
+    font-family: 'DM Sans',sans-serif; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .cap-table td { padding: 12px 16px; font-size: 0.85rem; border-bottom: 1px solid #e8e8e8; }
+  .cap-table tr:nth-child(even) td { background: #fafafa; }
+  .cap-table tr:hover td { background: #fff5f5; }
+
+  .cert-card {
+    background: white; border-radius: 14px; padding: 28px 24px; text-align: center;
+    border: 1px solid #eee; box-shadow: 0 4px 16px rgba(0,0,0,0.06); transition: all 0.3s;
+  }
+  .cert-card:hover { border-color: var(--red); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(230,48,48,0.1); }
+  .cert-badge {
+    width: 72px; height: 72px; background: linear-gradient(135deg,var(--navy),#1a2d5a);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px; font-size: 1.8rem;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+  @media (max-width: 900px) { .grid-2col { grid-template-columns: 1fr !important; } }
+  @media (max-width: 768px) {
+    .nav-contact-info { display: none; }
+    .menu-toggle { display: block; }
+    .nav-bottom { position: relative; }
+    .nav-links {
+      position: absolute; top: 100%; left: -28px; right: -28px; background: var(--navy);
+      flex-direction: column; align-items: center; gap: 0; padding: 0;
+      max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
+      z-index: 999; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-links.open { max-height: 500px; padding: 16px 0; }
+    .nav-links li { width: 100%; text-align: center; }
+    .nav-links a { display: block; padding: 12px 28px; font-size: 0.85rem; border-bottom: none; border-top: 1px solid rgba(255,255,255,0.05); }
+    .nav-links a:hover, .nav-links a.active { background: rgba(230,48,48,0.12); color: white; border-bottom: none; }
+    section { padding: 60px 0; scroll-margin-top: 110px; }
+    #hero { scroll-margin-top: 0; }
+    .hero-content { padding: 40px 20px; }
+    .section-inner { padding: 0 16px; }
+    .cap-table th, .cap-table td { padding: 10px 10px; font-size: 0.78rem; }
+    .carousel-slide img { width: 220px; height: 220px; }
+    .grid-auto-fit { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important; }
+    h2 { font-size: 1.9rem !important; }
+    .about-image { order: -1; }
+  }
+  @media (max-width: 480px) {
+    .carousel-slide img { width: 180px; height: 180px; }
+    .grid-auto-fit { grid-template-columns: 1fr 1fr !important; }
+    .clients-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>
+</head>
+
+<body style="background:#eae9f1;">
+
+<!-- NAVBAR -->
+<header id="navbar">
+  <div class="nav-inner">
+    <div class="nav-top">
+      <div class="nav-brand">
+        <img src="images/logo.jpeg" alt="Mount Engineers Logo" style="height:52px;">
+        <div>
+          <div class="nav-brand-text">
+            <span class="brand-mount">MOUNT</span><span class="brand-engineers">ENGINEERS</span>
+          </div>
+          <div class="nav-brand-sub">Precision machining · Since 1990</div>
+        </div>
+      </div>
+      <div class="nav-contact-info">
+        <a href="tel:+919440361856"><span>📞</span> +91 94403 61856 | +91 63016 24596</a>
+        <a href="mailto:mountengineersmadhu@gmail.com"><span>✉</span> mountengineersmadhu@gmail.com</a>
+        <a href="#contact" class="cta-btn">Get Quote</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    </div>
+    <div class="nav-bottom">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+
+<!-- HERO -->
+<section id="hero">
+  <img src="images/hero.png" class="hero-bg" alt="">
+  <div class="hero-content">
+    <div class="hero-tag f1">Premier CNC Job Work · Hyderabad</div>
+    <h1 class="f2" style="color:white; font-family:Cambria,'Times New Roman',serif; font-size:clamp(1.8rem,4vw,3rem); line-height:1.2; max-width:600px; margin-bottom:12px;">
+      Elevate Your Manufacturing with Mount Engineers
+    </h1>
+    <p class="f3" style="font-size:1.05rem; font-weight:600; color:#C9A84C; margin-bottom:10px;">Precision. Performance. Perfection.</p>
+    <p class="f3" style="color:rgba(255,255,255,0.7); max-width:520px; line-height:1.6; margin-bottom:24px; font-size:0.88rem;">
+      We turn complex designs into high-performance realities — delivering excellence at every micron across Electronics, Medical, Aerospace, and Flow Control industries.
+    </p>
+    <div class="f4" style="display:flex; gap:10px; flex-wrap:wrap;">
+      <a href="#contact" style="background:var(--red); color:white; padding:10px 22px; border-radius:6px; font-weight:600; font-size:0.85rem; text-decoration:none;">Request a Quote</a>
+      <a href="products.html" style="border:1.5px solid rgba(255,255,255,0.5); color:white; padding:10px 22px; border-radius:6px; font-weight:600; font-size:0.85rem; text-decoration:none;">Explore Products</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;" class="grid-2col">
+      <div>
+        <span class="section-label">About Us</span>
+        <h2 style="font-size:2.4rem; color:var(--navy); margin-bottom:18px; line-height:1.2;">A Legacy of Precision Since 1990</h2>
+        <p style="color:#555; line-height:1.8; margin-bottom:16px; font-size:0.93rem;">
+          Mount Engineers is a premier precision manufacturing company, specializing in high-accuracy CNC Turning and Milling solutions. For over three decades, we have been the trusted manufacturing partner for companies that demand zero compromise on quality.
+        </p>
+        <p style="color:#555; line-height:1.8; margin-bottom:24px; font-size:0.93rem;">
+          From intricate electronic connectors to life-saving surgical components and aerospace-grade hardware, we consistently deliver excellence at every micron. We work with a comprehensive range of materials — Brass, Aluminum, Stainless Steel, Copper, Titanium, Delrin, and engineering plastics — achieving tolerances as tight as <strong style="color:#1a1a2e;">0.02mm</strong>.
+        </p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.85rem;">
+          <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;"><span style="color:var(--red);">✔</span> 30+ Years of Experience</div>
+          <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;"><span style="color:var(--red);">✔</span> 0.02mm Precision Tolerances</div>
+          <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;"><span style="color:var(--red);">✔</span> Custom & High-Volume Job Work</div>
+          <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;"><span style="color:var(--red);">✔</span> MSME & GST Certified</div>
+          <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;"><span style="color:var(--red);">✔</span> Aerospace & Surgical Grade</div>
+          <div style="display:flex; align-items:center; gap:8px; background:#fff5f5; border-left:3px solid var(--red); padding:10px 12px; border-radius:6px;"><span style="color:var(--red);">✔</span> Full Assembly Capability</div>
+        </div>
+      </div>
+      <div style="position:relative;" class="about-image">
+        <img src="images/about.png" alt="Mount Engineers Facility" style="border-radius:16px; width:100%; box-shadow:0 20px 50px rgba(0,0,0,0.12);">
+        <div style="position:absolute; bottom:20px; left:20px; background:white; padding:16px 20px; border-radius:10px; box-shadow:0 8px 25px rgba(0,0,0,0.12); border-left:3px solid var(--red);">
+          <p style="font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--navy);">Est. 1990</p>
+          <p style="font-size:0.75rem; color:#666; margin-top:2px;">Trusted Manufacturing Partner</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">What We Serve</span>
+      <h2 style="font-size:2.4rem; color:var(--navy);">Industries We Serve</h2>
+      <p style="color:#666; max-width:560px; margin:10px auto 0; font-size:0.9rem; line-height:1.7;">Delivering certified precision components for sectors where accuracy is not optional — it is critical.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;" class="grid-auto-fit">
+      <div class="industry-card" id="ic0">
+        <div style="font-size:2.2rem; margin-bottom:14px;">⚡</div>
+        <h3 style="font-size:1.05rem; margin-bottom:10px;">Electronics & Connectivity</h3>
+        <p style="font-size:0.83rem; color:rgba(255,255,255,0.7); line-height:1.65;">High-conductivity components machined from Copper, Brass, and Aluminum, engineered for performance and reliability in electronic systems.</p>
+      </div>
+      <div class="industry-card" id="ic1">
+        <div style="font-size:2.2rem; margin-bottom:14px;">🩺</div>
+        <h3 style="font-size:1.05rem; margin-bottom:10px;">Medical Device Manufacturing</h3>
+        <p style="font-size:0.83rem; color:rgba(255,255,255,0.7); line-height:1.65;">Surgical-grade Stainless Steel and Titanium components, manufactured under rigorous standards for implants, diagnostic tools, and sterile instruments.</p>
+      </div>
+      <div class="industry-card" id="ic2">
+        <div style="font-size:2.2rem; margin-bottom:14px;">✈️</div>
+        <h3 style="font-size:1.05rem; margin-bottom:10px;">Aerospace & Defence</h3>
+        <p style="font-size:0.83rem; color:rgba(255,255,255,0.7); line-height:1.65;">Aerospace-grade precision parts designed to withstand extreme pressures and temperatures — manufactured with zero tolerance for error.</p>
+      </div>
+      <div class="industry-card" id="ic3">
+        <div style="font-size:2.2rem; margin-bottom:14px;">💧</div>
+        <h3 style="font-size:1.05rem; margin-bottom:10px;">Fluid Control & Flow Measurement</h3>
+        <p style="font-size:0.83rem; color:rgba(255,255,255,0.7); line-height:1.65;">End-to-end manufacturing and assembly of Rotameters, Fog Nebulizers, and Industrial Spray Systems for precise flow measurement applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">What We Do</span>
+      <h2 style="font-size:2.4rem; color:var(--navy);">Our Core Services</h2>
+      <p style="color:#666; max-width:500px; margin:10px auto 0; font-size:0.9rem; line-height:1.7;">A comprehensive suite of precision machining and assembly services under one roof.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:22px;" class="grid-auto-fit">
+      <div class="service-card">
+        <div style="overflow:hidden; height:160px; background:#f0f0f0;"><img src="images/turning.png" alt="CNC Turning" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div style="padding:22px;">
+          <h3 style="font-size:1.05rem; color:var(--navy); margin-bottom:8px;">CNC Turning</h3>
+          <p style="font-size:0.83rem; color:#666; line-height:1.65;">High-precision micro turning achieving tolerances up to 0.02mm. Our core specialization — ideal for high-volume, complex rotational components.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div style="overflow:hidden; height:160px; background:#f0f0f0;"><img src="images/milling.png" alt="CNC Milling" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div style="padding:22px;">
+          <h3 style="font-size:1.05rem; color:var(--navy); margin-bottom:8px;">CNC Milling</h3>
+          <p style="font-size:0.83rem; color:#666; line-height:1.65;">Advanced 3-axis machining for complex geometries, pockets, slots, and contoured surfaces across a wide range of materials.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div style="overflow:hidden; height:160px; background:#f0f0f0;"><img src="images/grinding.png" alt="Grinding & Finishing" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div style="padding:22px;">
+          <h3 style="font-size:1.05rem; color:var(--navy); margin-bottom:8px;">Grinding & Finishing</h3>
+          <p style="font-size:0.83rem; color:#666; line-height:1.65;">Precision surface finishing, cylindrical grinding, polishing, and protective coatings to meet stringent dimensional and aesthetic standards.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div style="overflow:hidden; height:160px; background:#f0f0f0;"><img src="images/Assemble.png" alt="Full Assembly" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div style="padding:22px;">
+          <h3 style="font-size:1.05rem; color:var(--navy); margin-bottom:8px;">Full Assembly</h3>
+          <p style="font-size:0.83rem; color:#666; line-height:1.65;">Complete build and integration of multi-component systems including Rotameters, Fog Nebulizers, and Industrial Spray Systems.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Our Clientele</span>
+      <h2 style="font-size:2.4rem; color:var(--navy);">Trusted by Industry Leaders</h2>
+      <p style="color:#666; max-width:560px; margin:10px auto 0; font-size:0.9rem; line-height:1.7;">Our reputation for reliability and technical mastery has earned us long-standing partnerships with esteemed organisations across India.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-bottom:36px;" class="clients-grid">
+      <div class="client-logo-card"><div style="font-size:1.6rem; margin-bottom:8px;">🏭</div><div>SPM Instrument India Pvt Ltd</div><div style="font-size:0.75rem; color:#888; margin-top:4px; font-weight:400;">Instrumentation</div></div>
+      <div class="client-logo-card"><div style="font-size:1.6rem; margin-bottom:8px;">🔬</div><div>Elico Ltd</div><div style="font-size:0.75rem; color:#888; margin-top:4px; font-weight:400;">Scientific Instruments</div></div>
+      <div class="client-logo-card"><div style="font-size:1.6rem; margin-bottom:8px;">⚙️</div><div>ECL Magtronics Pvt Ltd</div><div style="font-size:0.75rem; color:#888; margin-top:4px; font-weight:400;">Electronics</div></div>
+      <div class="client-logo-card"><div style="font-size:1.6rem; margin-bottom:8px;">🧪</div><div>Spectrochem Instruments Pvt Ltd</div><div style="font-size:0.75rem; color:#888; margin-top:4px; font-weight:400;">Analytical Instruments</div></div>
+      <div class="client-logo-card"><div style="font-size:1.6rem; margin-bottom:8px;">📡</div><div>Zen Technologies Limited</div><div style="font-size:0.75rem; color:#888; margin-top:4px; font-weight:400;">Cleanroom & Monitoring</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">What We Make</span>
+      <h2 style="font-size:2.4rem; color:var(--navy);">Our Products</h2>
+      <p style="color:#666; max-width:500px; margin:10px auto 0; font-size:0.9rem; line-height:1.7;">Precision-engineered components crafted for performance, reliability, and repeatability.</p>
+    </div>
+
+    <div style="max-width:460px; margin:0 auto;">
+      <div class="carousel-wrapper" id="carouselWrapper">
+        <div class="carousel-track" id="carouselTrack"></div>
+      </div>
+      <!-- Prev / Next arrows -->
+      <div style="display:flex; justify-content:center; align-items:center; gap:16px; margin-top:18px;">
+        <button onclick="carouselMove(-1); resetAuto();" style="background:white; border:1.5px solid #ddd; border-radius:50%; width:36px; height:36px; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)'" onmouseout="this.style.borderColor='#ddd';this.style.color='inherit'">‹</button>
+        <div id="carouselDots" style="display:flex; gap:7px; align-items:center;"></div>
+        <button onclick="carouselMove(1); resetAuto();" style="background:white; border:1.5px solid #ddd; border-radius:50%; width:36px; height:36px; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)'" onmouseout="this.style.borderColor='#ddd';this.style.color='inherit'">›</button>
+      </div>
+      <!-- Slide counter -->
+      <div style="text-align:center; margin-top:8px; font-size:0.75rem; color:#aaa;" id="carouselCounter"></div>
+
+      <div style="text-align:center; margin-top:24px;">
+        <a href="products.html" style="display:inline-block; background:var(--navy); color:white; padding:12px 32px; border-radius:8px; font-weight:600; font-size:0.88rem; text-decoration:none; border:2px solid var(--navy); transition:all 0.25s;" onmouseover="this.style.background='var(--red)';this.style.borderColor='var(--red)'" onmouseout="this.style.background='var(--navy)';this.style.borderColor='var(--navy)'">
+          View All Products →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Our Credentials</span>
+      <h2 style="font-size:2.4rem; color:var(--navy);">Certifications & Compliance</h2>
+      <p style="color:#666; max-width:560px; margin:10px auto 0; font-size:0.9rem; line-height:1.7;">Formally recognized for quality, legal compliance, and manufacturing standards across multiple government and industry bodies.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; margin-bottom:40px;" class="grid-auto-fit">
+      <div class="cert-card">
+        <div class="cert-badge">🏛️</div>
+        <h3 style="font-size:1rem; color:var(--navy); margin-bottom:8px; font-family:'DM Sans',sans-serif; font-weight:700;">MSME Registered</h3>
+        <p style="font-size:0.82rem; color:#666; line-height:1.6;">Officially registered under the Ministry of Micro, Small & Medium Enterprises, Government of India — affirming our standing as a legitimate manufacturing enterprise.</p>
+        <div style="margin-top:14px; display:inline-block; background:#f0f4ff; color:var(--navy); padding:4px 14px; border-radius:100px; font-size:0.73rem; font-weight:600;">Govt. of India</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge">📋</div>
+        <h3 style="font-size:1rem; color:var(--navy); margin-bottom:8px; font-family:'DM Sans',sans-serif; font-weight:700;">GST Certified</h3>
+        <p style="font-size:0.82rem; color:#666; line-height:1.6;">Fully GST-compliant with a valid GSTIN, enabling seamless invoicing and tax compliance for clients across India — B2B and B2G.</p>
+        <div style="margin-top:14px; display:inline-block; background:#f0f4ff; color:var(--navy); padding:4px 14px; border-radius:100px; font-size:0.73rem; font-weight:600;">Tax Compliant</div>
+      </div>
+    </div>
+    <div style="background:var(--navy); border-radius:16px; padding:36px 40px; display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;" class="grid-2col">
+      <div>
+        <h3 style="color:white; font-size:1.3rem; margin-bottom:10px;">Our Quality Commitment</h3>
+        <p style="color:rgba(255,255,255,0.7); font-size:0.87rem; line-height:1.7; max-width:560px;">Every component that leaves our facility undergoes thorough dimensional inspection using precision measurement instruments. We maintain batch records, material traceability, and first-article inspection protocols for all repeat orders — ensuring consistent, repeatable quality at scale.</p>
+      </div>
+      <div style="text-align:center; flex-shrink:0;">
+        <div style="font-size:2.8rem; font-family:'Playfair Display',serif; color:#C9A84C; font-weight:800; line-height:1;">0.02<span style="font-size:1.4rem;">mm</span></div>
+        <div style="color:rgba(255,255,255,0.6); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; margin-top:4px;">Tolerance Capability</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">At a Glance</span>
+      <h2 style="font-size:2.4rem; color:var(--navy);">Our Capabilities</h2>
+    </div>
+    <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
+      <table class="cap-table" style="width:100%; min-width:500px; border-collapse:collapse; border-radius:12px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
+        <thead>
+          <tr><th>Operation</th><th>Materials</th><th>Key Industries</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>CNC Turning</strong></td><td>Brass, Stainless Steel, Aluminum, Copper</td><td>Electronics, Medical, Aerospace</td></tr>
+          <tr><td><strong>CNC Milling</strong></td><td>Steel, Titanium, Delrin, Aluminum</td><td>Aerospace, Industrial, Defence</td></tr>
+          <tr><td><strong>Grinding & Finishing</strong></td><td>All Metals & Engineering Plastics</td><td>Medical, Electronics, Precision</td></tr>
+          <tr><td><strong>Full Assembly</strong></td><td>Multi-Component Systems</td><td>Flow Meters, Nebulizers, Spray</td></tr>
+          <tr><td><strong>Specialised Parts</strong></td><td>Custom Components per Drawing</td><td>Ace Instruments, R&D Support</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:36px; display:grid; grid-template-columns:1fr 1fr; gap:20px;" class="grid-2col">
+      <div style="background:white; border-radius:12px; padding:24px; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+        <h3 style="font-size:1rem; color:var(--navy); margin-bottom:12px; font-family:'DM Sans',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">⚙ Metals</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Brass</span>
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Aluminum</span>
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Stainless Steel</span>
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Steel</span>
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Copper</span>
+          <span style="background:#f0f4ff; color:var(--navy); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Surgical Titanium</span>
+        </div>
+      </div>
+      <div style="background:white; border-radius:12px; padding:24px; box-shadow:0 4px 14px rgba(0,0,0,0.06);">
+        <h3 style="font-size:1rem; color:var(--navy); margin-bottom:12px; font-family:'DM Sans',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">🔩 Engineering Plastics</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <span style="background:#fff5f5; color:var(--red); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">Delrin (Acetal)</span>
+          <span style="background:#fff5f5; color:var(--red); padding:5px 12px; border-radius:100px; font-size:0.78rem; font-weight:500;">High-Performance Polymers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="section-inner">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;" class="grid-2col">
+      <div>
+        <span class="section-label">Find Us</span>
+        <h2 style="font-size:2.4rem; color:var(--navy); margin-bottom:18px; line-height:1.2;">Visit Our Facility</h2>
+        <p style="color:#666; line-height:1.75; margin-bottom:24px; font-size:0.9rem;">Our manufacturing unit in Hyderabad is fully equipped for precision machining, assembly, and engineering solutions serving multiple industries.</p>
+        <div style="display:flex; flex-direction:column; gap:16px; font-size:0.88rem;">
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--red); font-size:1.1rem; margin-top:2px; flex-shrink:0;">📍</span>
+            <div>
+              <div style="font-weight:600; color:var(--navy); margin-bottom:4px;">Address</div>
+              <div style="color:#555; line-height:1.65;">Shop No. 7524, Hanuman Temple,<br>Near Old Airport Road, Nagarjuna Colony,<br>Gautam Nagar, Hyderabad – 500011</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <span style="color:var(--red); font-size:1.1rem; flex-shrink:0;">📞</span>
+            <div>
+              <div style="font-weight:600; color:var(--navy); margin-bottom:2px;">Phone</div>
+              <a href="tel:+919440361856" style="color:#555; text-decoration:none;">+91 94403 61856 | +91 63016 24596</a>
+            </div>
+          </div>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <span style="color:var(--red); font-size:1.1rem; flex-shrink:0;">✉</span>
+            <div>
+              <div style="font-weight:600; color:var(--navy); margin-bottom:2px;">Email</div>
+              <a href="mailto:mountengineersmadhu@gmail.com" style="color:#555; text-decoration:none; word-break:break-all;">mountengineersmadhu@gmail.com</a>
+            </div>
+          </div>
+        </div>
+        <a href="https://maps.app.goo.gl/ZHacvuJkeJHWjWYW9" target="_blank"
+           style="display:inline-block; margin-top:24px; background:var(--red); color:white; padding:12px 26px; border-radius:8px; font-weight:600; font-size:0.88rem; text-decoration:none; transition:background 0.25s;"
+           onmouseover="this.style.background='#c42020'" onmouseout="this.style.background='var(--red)'">Get Directions →</a>
+      </div>
+      <div style="border-radius:16px; overflow:hidden; box-shadow:0 10px 35px rgba(0,0,0,0.1);">
+        <iframe src="https://www.google.com/maps?q=17.461184,78.4565057&z=17&output=embed" style="width:100%; height:350px; border:0;" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;" class="grid-2col">
+      <div style="padding-top:8px;">
+        <span class="section-label">Get in Touch</span>
+        <h2 style="font-size:2.4rem; color:var(--navy); margin-bottom:16px; line-height:1.2;">Request a Quote</h2>
+        <p style="color:#666; line-height:1.75; margin-bottom:24px; font-size:0.9rem;">Share your requirements with us and our engineering team will respond with a tailored, competitive quote — typically within 24 hours.</p>
+        <div style="display:flex; flex-direction:column; gap:12px; font-size:0.88rem;">
+          <div><span style="font-weight:600; color:var(--navy);">📞 Phone:</span> <a href="tel:+919440361856" style="color:#555; text-decoration:none; margin-left:6px;">+91 94403 61856 | +91 63016 24596</a></div>
+          <div><span style="font-weight:600; color:var(--navy);">✉ Email:</span> <a href="mailto:mountengineersmadhu@gmail.com" style="color:#555; text-decoration:none; margin-left:6px; word-break:break-all;">mountengineersmadhu@gmail.com</a></div>
+          <div><span style="font-weight:600; color:var(--navy);">⚙ Services:</span> <span style="color:#555; margin-left:6px;">CNC Turning, Milling, Grinding & Assembly</span></div>
+          <div><span style="font-weight:600; color:var(--navy);">⏱ Response:</span> <span style="color:#555; margin-left:6px;">Within 24 hours</span></div>
+        </div>
+      </div>
+      <form action="https://formspree.io/f/xlgabkvp" method="POST"
+        style="background:white; padding:36px; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,0.08); display:flex; flex-direction:column; gap:14px;">
+        <input type="text" name="name" placeholder="Your Full Name" required style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
+        <input type="email" name="email" placeholder="Email Address" required style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
+        <input type="text" name="phone" placeholder="Phone Number" style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
+        <input type="text" name="company" placeholder="Company / Organisation Name" style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'">
+        <textarea name="message" rows="4" placeholder="Describe your requirement (material, quantity, drawing reference, etc.)..." required style="width:100%; border:1.5px solid #e0e0e0; padding:12px 14px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; resize:vertical; transition:border 0.2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#e0e0e0'"></textarea>
+        <input type="hidden" name="_next" value="https://mount-engineers.vercel.app/thankyou.html">
+        <input type="hidden" name="_subject" value="New Quote Request – Mount Engineers">
+        <button type="submit" style="width:100%; background:var(--red); color:white; padding:13px; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-weight:600; font-size:0.92rem; cursor:pointer; transition:background 0.25s;" onmouseover="this.style.background='#c42020'" onmouseout="this.style.background='var(--red)'">Submit Quote Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer style="background:var(--navy); color:rgba(255,255,255,0.6); text-align:center; padding:20px 28px; font-size:0.8rem;">
+  <span style="color:white; font-weight:600;">© Mount Engineers</span> · Precision CNC Machining, Hyderabad ·
+  <a href="tel:+919440361856" style="color:var(--gold); text-decoration:none; margin-left:6px;">+91 94403 61856 | +91 63016 24596</a>
+</footer>
+
+
+<script>
+// ── NAVBAR SCROLL ACTIVE LINK
+const sections = document.querySelectorAll('section[id]');
+const navLinkEls = document.querySelectorAll('#navLinks a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinkEls.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+sections.forEach(sec => observer.observe(sec));
+
+// ── MOBILE MENU
+const toggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navLinks');
+toggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  navMenu.classList.toggle('open');
+  toggle.textContent = navMenu.classList.contains('open') ? '✕' : '☰';
+});
+navMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => { navMenu.classList.remove('open'); toggle.textContent = '☰'; });
+});
+document.addEventListener('click', (e) => {
+  if (!navMenu.contains(e.target) && !toggle.contains(e.target)) { navMenu.classList.remove('open'); toggle.textContent = '☰'; }
+});
+
+// ── INDUSTRY CARD AUTO HIGHLIGHT
+const icards = document.querySelectorAll('.industry-card');
+let icIdx = 0;
+function highlightIC() {
+  icards.forEach(c => c.classList.remove('active'));
+  if (icards[icIdx]) icards[icIdx].classList.add('active');
+  icIdx = (icIdx + 1) % icards.length;
+}
+highlightIC();
+setInterval(highlightIC, 2200);
+
+// ── PRODUCT CAROUSEL — all images from img_sec + special_tools
+const images = [
+  { src: 'images/img_sec/special_tools/brass joint.jpeg',                             title: 'Brass Joint',                               type: 'special' },
+  { src: 'images/img_sec/special_tools/depth-micrometer.jpeg',                        title: 'Depth Micrometer',                          type: 'special' },
+  { src: 'images/img_sec/special_tools/Instrumentation Sensor Housing Assembly.jpeg', title: 'Instrumentation Sensor Housing Assembly',   type: 'special' },
+  { src: 'images/img_sec/special_tools/Male Threaded Hose Barb Adapter.jpeg',         title: 'Male Threaded Hose Barb Adapter',           type: 'special' },
+  { src: 'images/img_sec/special_tools/nebalizer.jpeg',                               title: 'Nebulizer',                                 type: 'special' },
+  { src: 'images/img_sec/special_tools/pool cue joint pin.jpeg',                      title: 'Pool Cue Joint Pin',                        type: 'special' },
+  { src: 'images/img_sec/special_tools/Quick-Acting Toggle Valve.jpeg',               title: 'Quick-Acting Toggle Valve',                 type: 'special' },
+  { src: 'images/img_sec/special_tools/rotary joint.jpeg',                            title: 'Rotary Joint',                              type: 'special' },
+  { src: 'images/img_sec/special_tools/tool cutter.jpeg',                             title: 'Tool Cutter',                               type: 'special' },
+  { src: 'images/img_sec/air-cap.jpeg',                                               title: 'Air Cap',                                   type: 'product' },
+  { src: 'images/img_sec/AN Flare to Barb Adapter.jpeg',                              title: 'AN Flare to Barb Adapter',                  type: 'product' },
+  { src: 'images/img_sec/BNC Female Flange 4 Hole Panel.jpeg',                        title: 'BNC Female Flange 4 Hole Panel',            type: 'product' },
+  { src: 'images/img_sec/brace lubricant spacer.jpeg',                                title: 'Brace Lubricant Spacer',                    type: 'product' },
+  { src: 'images/img_sec/brass ball stud.jpeg',                                       title: 'Brass Ball Stud',                           type: 'product' },
+  { src: 'images/img_sec/brass gear.jpeg',                                            title: 'Brass Gear',                                type: 'product' },
+  { src: 'images/img_sec/Brass Threaded Square Flange Adapter.jpeg',                  title: 'Brass Threaded Square Flange Adapter',      type: 'product' },
+  { src: 'images/img_sec/dove tail cutter.jpeg',                                      title: 'Dove Tail Cutter',                          type: 'product' },
+  { src: 'images/img_sec/female-connector.jpeg',                                      title: 'Female Connector',                          type: 'product' },
+  { src: 'images/img_sec/Hex-Body Probe Adapter.jpeg',                                title: 'Hex-Body Probe Adapter',                    type: 'product' },
+  { src: 'images/img_sec/Knurled Adjustment Screw.jpeg',                              title: 'Knurled Adjustment Screw',                  type: 'product' },
+  { src: 'images/img_sec/Knurled Thumb Cap.jpeg',                                     title: 'Knurled Thumb Cap',                         type: 'product' },
+  { src: 'images/img_sec/Orifice Flow Nozzle.jpeg',                                   title: 'Orifice Flow Nozzle',                       type: 'product' },
+  { src: 'images/img_sec/pivot_hinge.jpeg',                                           title: 'Pivot Hinge',                               type: 'product' },
+  { src: 'images/img_sec/Precision Threaded Square Flange Adapter.jpeg',              title: 'Precision Threaded Square Flange Adapter',  type: 'product' },
+  { src: 'images/img_sec/Probe Housing.jpeg',                                         title: 'Probe Housing',                             type: 'product' },
+  { src: 'images/img_sec/rotor hub.jpeg',                                             title: 'Rotor Hub',                                 type: 'product' },
+  { src: 'images/img_sec/sensor-adapter with nut.jpeg',                               title: 'Sensor Adapter with Nut',                   type: 'product' },
+  { src: 'images/img_sec/ss 3 way connector.jpeg',                                    title: 'SS 3 Way Connector',                        type: 'product' },
+  { src: 'images/img_sec/Ss tapered shaft.jpeg',                                      title: 'SS Tapered Shaft',                          type: 'product' },
+  { src: 'images/img_sec/stainless steel fuel injector.jpeg',                         title: 'Stainless Steel Fuel Injector',             type: 'product' },
+  { src: 'images/img_sec/surgical-ss-component-2.jpeg',                               title: 'Surgical SS Component',                     type: 'product' },
+  { src: 'images/img_sec/taper cone.jpeg',                                            title: 'Taper Cone',                                type: 'product' },
+  { src: 'images/img_sec/Threaded Flanged Plug.jpeg',                                 title: 'Threaded Flanged Plug',                     type: 'product' },
+  { src: 'images/img_sec/Threaded Slotted Gland Adapter.jpeg',                        title: 'Threaded Slotted Gland Adapter',            type: 'product' },
+  { src: 'images/img_sec/threaded-shaft.jpeg',                                        title: 'Threaded Shaft',                            type: 'product' },
+];
+
+let cIdx = 0;
+let autoSlide;
+const track = document.getElementById('carouselTrack');
+const dotsContainer = document.getElementById('carouselDots');
+const wrapper = document.getElementById('carouselWrapper');
+const counter = document.getElementById('carouselCounter');
+
+function buildCarousel() {
+  track.innerHTML = '';
+  images.forEach((img) => {
+    const isSpecial = img.type === 'special';
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide';
+    slide.innerHTML = `
+      <a href="products.html" style="display:block; text-decoration:none;">
+        <img src="${img.src}" alt="${img.title}"
+             style="width:300px; height:300px; object-fit:contain; border-radius:16px;
+                    box-shadow:0 20px 50px rgba(0,0,0,0.15); background:#f5f5f5;
+                    padding:12px; display:block; margin:0 auto;">
+      </a>
+      <div style="margin-top:14px; text-align:center;">
+        <span class="carousel-pill ${isSpecial ? 'pill-special' : 'pill-product'}">
+          ${isSpecial ? '★ Special Tool' : 'Product'}
+        </span>
+        <div style="font-weight:600; color:var(--navy); font-size:0.9rem; margin-top:4px;">${img.title}</div>
+      </div>
+    `;
+    track.appendChild(slide);
+  });
+  buildDots();
+  updateCarousel();
+  startAuto();
+}
+
+function buildDots() {
+  dotsContainer.innerHTML = '';
+  // Show max 7 dots with condensed display for large sets
+  const maxDots = 7;
+  const total = images.length;
+  if (total <= maxDots) {
+    images.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i+1));
+      dot.onclick = () => { cIdx = i; updateCarousel(); resetAuto(); };
+      dotsContainer.appendChild(dot);
+    });
+  } else {
+    // Show 5 dots always; active one in center
+    for (let i = 0; i < 5; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.setAttribute('data-dotidx', i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+}
+
+function updateCarousel() {
+  track.style.transform = `translateX(-${cIdx * 100}%)`;
+  const total = images.length;
+
+  // Update dots
+  const allDots = dotsContainer.querySelectorAll('.carousel-dot');
+  if (total <= 7) {
+    allDots.forEach((d, i) => d.classList.toggle('active', i === cIdx));
+  } else {
+    // Sliding window of 5 dots
+    const half = 2;
+    let start = Math.max(0, Math.min(cIdx - half, total - 5));
+    allDots.forEach((dot, di) => {
+      const realIdx = start + di;
+      dot.classList.toggle('active', realIdx === cIdx);
+      dot.onclick = () => { cIdx = realIdx; updateCarousel(); resetAuto(); };
+    });
+  }
+
+  // Counter
+  counter.textContent = (cIdx + 1) + ' / ' + total;
+}
+
+function carouselMove(dir) {
+  cIdx = (cIdx + dir + images.length) % images.length;
+  updateCarousel();
+}
+function startAuto() { autoSlide = setInterval(() => { carouselMove(1); }, 3000); }
+function resetAuto() { clearInterval(autoSlide); startAuto(); }
+
+// Touch swipe
+let startX = 0;
+wrapper.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+wrapper.addEventListener('touchend', e => {
+  const diff = startX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) { carouselMove(diff > 0 ? 1 : -1); resetAuto(); }
+});
+
+// Mouse drag
+let isDown = false, startPos = 0;
+wrapper.addEventListener('mousedown', e => { isDown = true; startPos = e.clientX; });
+wrapper.addEventListener('mouseup', e => {
+  if (!isDown) return;
+  const diff = startPos - e.clientX;
+  if (Math.abs(diff) > 50) { carouselMove(diff > 0 ? 1 : -1); resetAuto(); }
+  isDown = false;
+});
+wrapper.addEventListener('mouseleave', () => isDown = false);
+
+// Keyboard arrows
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') { carouselMove(1); resetAuto(); }
+  if (e.key === 'ArrowLeft')  { carouselMove(-1); resetAuto(); }
+});
+
+buildCarousel();
+</script>
+
+</body>
+</html>
