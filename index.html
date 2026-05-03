@@ -799,21 +799,15 @@ document.addEventListener('keydown', e => {
 
 buildCarousel();
 </script>
-<script>
+
+  <script>
   const params = new URLSearchParams(window.location.search);
   const product = params.get("product");
 
   if (product) {
-    const decoded = decodeURIComponent(product);
-
     const textarea = document.querySelector('textarea[name="message"]');
     if (textarea) {
-      textarea.value = "I am interested in: " + decoded;
-    }
-
-    const display = document.getElementById("selectedProduct");
-    if (display) {
-      display.innerHTML = "Selected Product: <strong>" + decoded + "</strong>";
+      textarea.value = "I am interested in: " + decodeURIComponent(product);
     }
   }
 </script>
