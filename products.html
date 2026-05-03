@@ -324,217 +324,67 @@
     <span class="section-count" id="productsCount"></span>
   </div>
   <div class="products-grid" id="productsGrid">
+ <script>
+const products = [
+  "air-cap",
+  "AN Flare to Barb Adapter",
+  "BNC Female Flange 4 Hole Panel",
+  "brace lubricant spacer",
+  "brass ball stud",
+  "brass gear",
+  "brass joint",
+  "Brass Threaded Square Flange Adapter",
+  "dove tail cutter",
+  "female-connector",
+  "Hex-Body Probe Adapter",
+  "Knurled Adjustment Screw",
+  "Knurled Thumb Cap",
+  "Male Threaded Hose Barb Adapter",
+  "Orifice Flow Nozzle",
+  "pivot_hinge",
+  "pool cue joint pin",
+  "Precision Threaded Square Flange Adapter",
+  "Probe Housing",
+  "Quick-Acting Toggle Valve",
+  "rotary joint",
+  "rotor hub",
+  "sensor-adapter with nut",
+  "ss 3 way connector",
+  "Ss tapered shaft",
+  "stainless steel fuel injector",
+  "surgical-ss-component-2",
+  "taper cone",
+  "Threaded Flanged Plug",
+  "Threaded Slotted Gland Adapter",
+  "threaded-shaft",
+  "tool cutter"
+];
 
-    <div class="product-card" data-img="images/img_sec/air-cap.jpeg" data-title="Air Cap" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/air-cap.jpeg" alt="Air Cap" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Air Cap</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
+const grid = document.getElementById("productsGrid");
+
+products.forEach(name => {
+  const file = `images/img_sec/${name}.jpeg`;
+
+  const card = document.createElement("div");
+  card.className = "product-card";
+  card.setAttribute("data-img", file);
+  card.setAttribute("data-title", name);
+  card.onclick = function () { openLightbox(this); };
+
+  card.innerHTML = `
+    <div class="product-card-img">
+      <img src="${file}" alt="${name}" loading="lazy">
     </div>
-
-    <div class="product-card" data-img="images/img_sec/AN Flare to Barb Adapter.jpeg" data-title="AN Flare to Barb Adapter" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/AN Flare to Barb Adapter.jpeg" alt="AN Flare to Barb Adapter" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>AN Flare to Barb Adapter</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
+    <div class="product-card-body">
+      <h3>${name}</h3>
+      <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
     </div>
+  `;
 
-    <div class="product-card" data-img="images/img_sec/BNC Female Flange 4 Hole Panel.jpeg" data-title="BNC Female Flange 4 Hole Panel" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/BNC Female Flange 4 Hole Panel.jpeg" alt="BNC Female Flange 4 Hole Panel" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>BNC Female Flange 4 Hole Panel</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/brace lubricant spacer.jpeg" data-title="Brace Lubricant Spacer" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/brace lubricant spacer.jpeg" alt="Brace Lubricant Spacer" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Brace Lubricant Spacer</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/brass ball stud.jpeg" data-title="Brass Ball Stud" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/brass ball stud.jpeg" alt="Brass Ball Stud" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Brass Ball Stud</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/brass gear.jpeg" data-title="Brass Gear" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/brass gear.jpeg" alt="Brass Gear" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Brass Gear</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/Brass Threaded Square Flange Adapter.jpeg" data-title="Brass Threaded Square Flange Adapter" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/Brass Threaded Square Flange Adapter.jpeg" alt="Brass Threaded Square Flange Adapter" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Brass Threaded Square Flange Adapter</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/dove tail cutter.jpeg" data-title="Dove Tail Cutter" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/dove tail cutter.jpeg" alt="Dove Tail Cutter" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Dove Tail Cutter</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/female-connector.jpeg" data-title="Female Connector" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/female-connector.jpeg" alt="Female Connector" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Female Connector</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/Hex-Body Probe Adapter.jpeg" data-title="Hex-Body Probe Adapter" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/Hex-Body Probe Adapter.jpeg" alt="Hex-Body Probe Adapter" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Hex-Body Probe Adapter</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/Knurled Adjustment Screw.jpeg" data-title="Knurled Adjustment Screw" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/Knurled Adjustment Screw.jpeg" alt="Knurled Adjustment Screw" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Knurled Adjustment Screw</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/Knurled Thumb Cap.jpeg" data-title="Knurled Thumb Cap" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/Knurled Thumb Cap.jpeg" alt="Knurled Thumb Cap" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Knurled Thumb Cap</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/Orifice Flow Nozzle.jpeg" data-title="Orifice Flow Nozzle" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/Orifice Flow Nozzle.jpeg" alt="Orifice Flow Nozzle" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Orifice Flow Nozzle</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/pivot_hinge.jpeg" data-title="Pivot Hinge" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/pivot_hinge.jpeg" alt="Pivot Hinge" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Pivot Hinge</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/Precision Threaded Square Flange Adapter.jpeg" data-title="Precision Threaded Square Flange Adapter" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/Precision Threaded Square Flange Adapter.jpeg" alt="Precision Threaded Square Flange Adapter" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Precision Threaded Square Flange Adapter</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/Probe Housing.jpeg" data-title="Probe Housing" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/Probe Housing.jpeg" alt="Probe Housing" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Probe Housing</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/rotor hub.jpeg" data-title="Rotor Hub" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/rotor hub.jpeg" alt="Rotor Hub" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Rotor Hub</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/sensor-adapter with nut.jpeg" data-title="Sensor Adapter with Nut" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/sensor-adapter with nut.jpeg" alt="Sensor Adapter with Nut" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Sensor Adapter with Nut</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/ss 3 way connector.jpeg" data-title="SS 3 Way Connector" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/ss 3 way connector.jpeg" alt="SS 3 Way Connector" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>SS 3 Way Connector</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/Ss tapered shaft.jpeg" data-title="SS Tapered Shaft" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/Ss tapered shaft.jpeg" alt="SS Tapered Shaft" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>SS Tapered Shaft</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/stainless steel fuel injector.jpeg" data-title="Stainless Steel Fuel Injector" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/stainless steel fuel injector.jpeg" alt="Stainless Steel Fuel Injector" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Stainless Steel Fuel Injector</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/surgical-ss-component-2.jpeg" data-title="Surgical SS Component" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/surgical-ss-component-2.jpeg" alt="Surgical SS Component" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Surgical SS Component</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/taper cone.jpeg" data-title="Taper Cone" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/taper cone.jpeg" alt="Taper Cone" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Taper Cone</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/Threaded Flanged Plug.jpeg" data-title="Threaded Flanged Plug" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/Threaded Flanged Plug.jpeg" alt="Threaded Flanged Plug" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Threaded Flanged Plug</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/Threaded Slotted Gland Adapter.jpeg" data-title="Threaded Slotted Gland Adapter" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/Threaded Slotted Gland Adapter.jpeg" alt="Threaded Slotted Gland Adapter" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Threaded Slotted Gland Adapter</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
-    <div class="product-card" data-img="images/img_sec/threaded-shaft.jpeg" data-title="Threaded Shaft" onclick="openLightbox(this)">
-      <div class="product-card-img"><img src="images/img_sec/threaded-shaft.jpeg" alt="Threaded Shaft" loading="lazy"></div>
-      <div class="product-card-body">
-        <h3>Threaded Shaft</h3>
-        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-      </div>
-    </div>
-
+  grid.appendChild(card);
+});
+</script>
   </div>
-</div>
 
 
 <!-- ════════════════ LIGHTBOX ════════════════ -->
