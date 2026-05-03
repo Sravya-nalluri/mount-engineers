@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Products – Mount Engineers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #151d29;
+    --red: #e63030;
+    --red-dark: #c42020;
+    --gold: #C9A84C;
+    --bg: #eae9f1;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; background: var(--bg); }
+  h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+  /* ── NAVBAR ── */
+  #navbar {
+    background: var(--navy);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    position: sticky; top: 0; z-index: 1000;
+  }
+  .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+  .nav-top {
+    display: flex; justify-content: space-between;
+    align-items: center; padding: 12px 0;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-brand img { height: 42px; border-radius: 6px; background: white; padding: 2px; }
+  .nav-brand-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800; font-size: 1.1rem; color: rgb(245,10,10);
+  }
+  .nav-brand-sub {
+    font-size: 0.42rem; color: #eeece5;
+    letter-spacing: 0.12em; text-transform: uppercase; font-weight: 300;
+  }
+  .back-btn {
+    background: rgba(255,255,255,0.1); color: white;
+    padding: 8px 20px; border-radius: 6px;
+    font-size: 0.82rem; font-weight: 600;
+    text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.25s;
+  }
+  .back-btn:hover { background: var(--red); border-color: var(--red); }
+
+  /* ── HERO ── */
+  .page-hero {
+    background: var(--navy); padding: 60px 28px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .page-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 30%, rgba(230,48,48,0.07) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; max-width: 700px; margin: 0 auto; }
+  .section-label {
+    display: inline-block; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 10px;
+  }
+
+  /* ── SECTION WRAPPERS ── */
+  .products-section {
+    max-width: 1280px; margin: 0 auto; padding: 60px 28px;
+  }
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 32px; padding-bottom: 18px;
+    border-bottom: 2px solid #e0dff0;
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--navy); line-height: 1.2; margin-top: 6px;
+  }
+  .section-count {
+    font-size: 0.78rem; color: #999; font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Special Tools section gets a subtle gold accent */
+  .special-section {
+    background: linear-gradient(135deg, #fdfbf4 0%, #f8f6ef 100%);
+    border-top: 3px solid var(--gold);
+    border-bottom: 3px solid var(--gold);
+    padding: 60px 0;
+  }
+  .special-section .section-header {
+    border-bottom-color: rgba(201,168,76,0.3);
+  }
+  .special-section .section-label { color: var(--gold); }
+  .special-section .section-title { color: var(--navy); }
+
+  /* ── GRID ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 22px;
+  }
+
+  /* ── CARD ── */
+  .product-card {
+    background: white; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 3px 16px rgba(0,0,0,0.07);
+    border: 1px solid #eee; transition: all 0.32s ease;
+    display: flex; flex-direction: column;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.13);
+    border-color: var(--red);
+  }
+  .special-section .product-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 14px 36px rgba(201,168,76,0.18);
+  }
+
+  /* Image fills card with contain — no cropping */
+  .product-card-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #f5f5f5;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    padding: 12px;
+  }
+  .product-card-img img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+    display: block;
+  }
+  .product-card:hover .product-card-img img { transform: scale(1.05); }
+
+  .product-card-body {
+    padding: 14px 16px 16px;
+    display: flex; flex-direction: column; gap: 12px;
+    flex: 1;
+  }
+  .product-card-body h3 {
+    font-size: 0.88rem; color: var(--navy);
+    font-family: 'DM Sans', sans-serif; font-weight: 700;
+    line-height: 1.4;
+  }
+  .product-cta {
+    display: block; background: var(--navy); color: white;
+    text-align: center; padding: 9px 12px; border-radius: 7px;
+    font-size: 0.78rem; font-weight: 600; text-decoration: none;
+    transition: background 0.22s; margin-top: auto;
+  }
+  .product-cta:hover { background: var(--red); }
+  .special-section .product-cta:hover { background: #b8921e; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.88); z-index: 9999;
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-inner {
+    background: white; border-radius: 16px; overflow: hidden;
+    max-width: 520px; width: 100%;
+    display: flex; flex-direction: column;
+    position: relative;
+    max-height: 92vh;
+  }
+  .lightbox-close {
+    position: absolute; top: 12px; right: 14px;
+    background: white; border: none; border-radius: 50%;
+    width: 32px; height: 32px; font-size: 1rem;
+    cursor: pointer; display: flex; align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25); z-index: 10;
+  }
+  .lightbox-img-wrap {
+    width: 100%; background: #f5f5f5;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px 24px 16px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+  .lightbox-img-wrap img {
+    width: 100%; height: auto;
+    max-height: 65vh;
+    object-fit: contain; display: block;
+    border-radius: 6px;
+  }
+  .lightbox-body {
+    padding: 16px 24px 22px;
+    display: flex; flex-direction: column; gap: 14px;
+    flex-shrink: 0;
+  }
+  .lightbox-body h2 {
+    font-size: 1.1rem; color: var(--navy); line-height: 1.3;
+  }
+
+  /* ── CTA BANNER ── */
+  .cta-banner { background: var(--navy); padding: 56px 28px; text-align: center; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #000d1e; color: rgba(255,255,255,0.5);
+    text-align: center; padding: 20px 28px; font-size: 0.8rem;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+    .products-section { padding: 40px 16px; }
+    .special-section { padding: 40px 0; }
+  }
+  @media (max-width: 480px) {
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header id="navbar">
+  <div class="nav-inner">
+    <div class="nav-top">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.jpeg" alt="Mount Engineers Logo">
+        <div>
+          <div class="nav-brand-text">
+            <span style="color:var(--red)">MOUNT</span><span style="color:white">ENGINEERS</span>
+          </div>
+          <div class="nav-brand-sub">Precision Machining · Since 1990</div>
+        </div>
+      </a>
+      <a href="index.html" class="back-btn">← Back to Home</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="section-label" style="color:var(--gold);">Our Products</span>
+    <h1 style="font-size:clamp(1.8rem,4vw,2.8rem); color:white; margin-bottom:14px; line-height:1.2;">
+      Precision-Engineered Components
+    </h1>
+    <p style="color:rgba(255,255,255,0.7); font-size:0.92rem; line-height:1.7; max-width:540px; margin:0 auto;">
+      Explore our range of CNC-machined parts crafted from Brass, Aluminum, Stainless Steel, Copper, Titanium, and engineering plastics — designed to meet the highest industrial standards.
+    </p>
+  </div>
+</div>
+
+
+<!-- ════════════════ SPECIAL TOOLS SECTION ════════════════ -->
+<div class="special-section">
+  <div class="products-section" style="padding-top:0; padding-bottom:0;">
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-label">★ Featured</span>
+        <h2 class="section-title">Special Tools</h2>
+      </div>
+      <span class="section-count" id="specialCount"></span>
+    </div>
+    <div class="products-grid" id="specialGrid">
+
+      <div class="product-card" data-img="images/img_sec/special_tools/brass joint.jpeg" data-title="Brass Joint" onclick="openLightbox(this)">
+        <div class="product-card-img"><img src="images/img_sec/special_tools/brass joint.jpeg" alt="Brass Joint" loading="lazy"></div>
+        <div class="product-card-body">
+          <h3>Brass Joint</h3>
+          <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-img="images/img_sec/special_tools/depth-micrometer.jpeg" data-title="Depth Micrometer" onclick="openLightbox(this)">
+        <div class="product-card-img"><img src="images/img_sec/special_tools/depth-micrometer.jpeg" alt="Depth Micrometer" loading="lazy"></div>
+        <div class="product-card-body">
+          <h3>Depth Micrometer</h3>
+          <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-img="images/img_sec/special_tools/Instrumentation Sensor Housing Assembly.jpeg" data-title="Instrumentation Sensor Housing Assembly" onclick="openLightbox(this)">
+        <div class="product-card-img"><img src="images/img_sec/special_tools/Instrumentation Sensor Housing Assembly.jpeg" alt="Instrumentation Sensor Housing Assembly" loading="lazy"></div>
+        <div class="product-card-body">
+          <h3>Instrumentation Sensor Housing Assembly</h3>
+          <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-img="images/img_sec/special_tools/Male Threaded Hose Barb Adapter.jpeg" data-title="Male Threaded Hose Barb Adapter" onclick="openLightbox(this)">
+        <div class="product-card-img"><img src="images/img_sec/special_tools/Male Threaded Hose Barb Adapter.jpeg" alt="Male Threaded Hose Barb Adapter" loading="lazy"></div>
+        <div class="product-card-body">
+          <h3>Male Threaded Hose Barb Adapter</h3>
+          <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-img="images/img_sec/special_tools/nebalizer.jpeg" data-title="Nebulizer" onclick="openLightbox(this)">
+        <div class="product-card-img"><img src="images/img_sec/special_tools/nebalizer.jpeg" alt="Nebulizer" loading="lazy"></div>
+        <div class="product-card-body">
+          <h3>Nebulizer</h3>
+          <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-img="images/img_sec/special_tools/pool cue joint pin.jpeg" data-title="Pool Cue Joint Pin" onclick="openLightbox(this)">
+        <div class="product-card-img"><img src="images/img_sec/special_tools/pool cue joint pin.jpeg" alt="Pool Cue Joint Pin" loading="lazy"></div>
+        <div class="product-card-body">
+          <h3>Pool Cue Joint Pin</h3>
+          <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-img="images/img_sec/special_tools/Quick-Acting Toggle Valve.jpeg" data-title="Quick-Acting Toggle Valve" onclick="openLightbox(this)">
+        <div class="product-card-img"><img src="images/img_sec/special_tools/Quick-Acting Toggle Valve.jpeg" alt="Quick-Acting Toggle Valve" loading="lazy"></div>
+        <div class="product-card-body">
+          <h3>Quick-Acting Toggle Valve</h3>
+          <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-img="images/img_sec/special_tools/rotary joint.jpeg" data-title="Rotary Joint" onclick="openLightbox(this)">
+        <div class="product-card-img"><img src="images/img_sec/special_tools/rotary joint.jpeg" alt="Rotary Joint" loading="lazy"></div>
+        <div class="product-card-body">
+          <h3>Rotary Joint</h3>
+          <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+        </div>
+      </div>
+
+      <div class="product-card" data-img="images/img_sec/special_tools/tool cutter.jpeg" data-title="Tool Cutter" onclick="openLightbox(this)">
+        <div class="product-card-img"><img src="images/img_sec/special_tools/tool cutter.jpeg" alt="Tool Cutter" loading="lazy"></div>
+        <div class="product-card-body">
+          <h3>Tool Cutter</h3>
+          <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════ PRODUCTS SECTION ════════════════ -->
+<div class="products-section">
+  <div class="section-header">
+    <div class="section-header-left">
+      <span class="section-label">Catalogue</span>
+      <h2 class="section-title">Products</h2>
+    </div>
+    <span class="section-count" id="productsCount"></span>
+  </div>
+  <div class="products-grid" id="productsGrid">
+
+    <div class="product-card" data-img="images/img_sec/air-cap.jpeg" data-title="Air Cap" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/air-cap.jpeg" alt="Air Cap" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Air Cap</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/AN Flare to Barb Adapter.jpeg" data-title="AN Flare to Barb Adapter" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/AN Flare to Barb Adapter.jpeg" alt="AN Flare to Barb Adapter" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>AN Flare to Barb Adapter</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/BNC Female Flange 4 Hole Panel.jpeg" data-title="BNC Female Flange 4 Hole Panel" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/BNC Female Flange 4 Hole Panel.jpeg" alt="BNC Female Flange 4 Hole Panel" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>BNC Female Flange 4 Hole Panel</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/brace lubricant spacer.jpeg" data-title="Brace Lubricant Spacer" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/brace lubricant spacer.jpeg" alt="Brace Lubricant Spacer" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Brace Lubricant Spacer</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/brass ball stud.jpeg" data-title="Brass Ball Stud" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/brass ball stud.jpeg" alt="Brass Ball Stud" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Brass Ball Stud</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/brass gear.jpeg" data-title="Brass Gear" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/brass gear.jpeg" alt="Brass Gear" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Brass Gear</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/Brass Threaded Square Flange Adapter.jpeg" data-title="Brass Threaded Square Flange Adapter" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/Brass Threaded Square Flange Adapter.jpeg" alt="Brass Threaded Square Flange Adapter" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Brass Threaded Square Flange Adapter</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/dove tail cutter.jpeg" data-title="Dove Tail Cutter" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/dove tail cutter.jpeg" alt="Dove Tail Cutter" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Dove Tail Cutter</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/female-connector.jpeg" data-title="Female Connector" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/female-connector.jpeg" alt="Female Connector" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Female Connector</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/Hex-Body Probe Adapter.jpeg" data-title="Hex-Body Probe Adapter" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/Hex-Body Probe Adapter.jpeg" alt="Hex-Body Probe Adapter" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Hex-Body Probe Adapter</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/Knurled Adjustment Screw.jpeg" data-title="Knurled Adjustment Screw" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/Knurled Adjustment Screw.jpeg" alt="Knurled Adjustment Screw" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Knurled Adjustment Screw</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/Knurled Thumb Cap.jpeg" data-title="Knurled Thumb Cap" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/Knurled Thumb Cap.jpeg" alt="Knurled Thumb Cap" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Knurled Thumb Cap</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/Orifice Flow Nozzle.jpeg" data-title="Orifice Flow Nozzle" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/Orifice Flow Nozzle.jpeg" alt="Orifice Flow Nozzle" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Orifice Flow Nozzle</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/pivot_hinge.jpeg" data-title="Pivot Hinge" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/pivot_hinge.jpeg" alt="Pivot Hinge" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Pivot Hinge</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/Precision Threaded Square Flange Adapter.jpeg" data-title="Precision Threaded Square Flange Adapter" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/Precision Threaded Square Flange Adapter.jpeg" alt="Precision Threaded Square Flange Adapter" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Precision Threaded Square Flange Adapter</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/Probe Housing.jpeg" data-title="Probe Housing" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/Probe Housing.jpeg" alt="Probe Housing" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Probe Housing</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/rotor hub.jpeg" data-title="Rotor Hub" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/rotor hub.jpeg" alt="Rotor Hub" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Rotor Hub</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/sensor-adapter with nut.jpeg" data-title="Sensor Adapter with Nut" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/sensor-adapter with nut.jpeg" alt="Sensor Adapter with Nut" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Sensor Adapter with Nut</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/ss 3 way connector.jpeg" data-title="SS 3 Way Connector" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/ss 3 way connector.jpeg" alt="SS 3 Way Connector" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>SS 3 Way Connector</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/Ss tapered shaft.jpeg" data-title="SS Tapered Shaft" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/Ss tapered shaft.jpeg" alt="SS Tapered Shaft" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>SS Tapered Shaft</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/stainless steel fuel injector.jpeg" data-title="Stainless Steel Fuel Injector" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/stainless steel fuel injector.jpeg" alt="Stainless Steel Fuel Injector" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Stainless Steel Fuel Injector</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/surgical-ss-component-2.jpeg" data-title="Surgical SS Component" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/surgical-ss-component-2.jpeg" alt="Surgical SS Component" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Surgical SS Component</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/taper cone.jpeg" data-title="Taper Cone" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/taper cone.jpeg" alt="Taper Cone" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Taper Cone</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/Threaded Flanged Plug.jpeg" data-title="Threaded Flanged Plug" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/Threaded Flanged Plug.jpeg" alt="Threaded Flanged Plug" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Threaded Flanged Plug</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/Threaded Slotted Gland Adapter.jpeg" data-title="Threaded Slotted Gland Adapter" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/Threaded Slotted Gland Adapter.jpeg" alt="Threaded Slotted Gland Adapter" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Threaded Slotted Gland Adapter</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+    <div class="product-card" data-img="images/img_sec/threaded-shaft.jpeg" data-title="Threaded Shaft" onclick="openLightbox(this)">
+      <div class="product-card-img"><img src="images/img_sec/threaded-shaft.jpeg" alt="Threaded Shaft" loading="lazy"></div>
+      <div class="product-card-body">
+        <h3>Threaded Shaft</h3>
+        <a href="index.html#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════ LIGHTBOX ════════════════ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-img-wrap">
+      <img src="" alt="" id="lbImg">
+    </div>
+    <div class="lightbox-body">
+      <h2 id="lbTitle"></h2>
+      <a href="index.html#contact"
+         style="display:block; background:var(--red); color:white; text-align:center; padding:13px; border-radius:8px; font-weight:700; font-size:0.9rem; text-decoration:none;">
+        Request a Quote for This Product →
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════ CTA BANNER ════════════════ -->
+<div class="cta-banner">
+  <span class="section-label" style="color:var(--gold);">Work With Us</span>
+  <h2 style="color:white; font-size:2rem; margin:10px 0 14px; font-family:'Playfair Display',serif;">Don't See Your Part Listed?</h2>
+  <p style="color:rgba(255,255,255,0.7); font-size:0.9rem; max-width:520px; margin:0 auto 28px; line-height:1.7;">
+    We manufacture to your exact drawings and specifications. Share your design and we'll deliver precision components in any material, any quantity.
+  </p>
+  <a href="index.html#contact"
+     style="display:inline-block; background:var(--red); color:white; padding:13px 36px; border-radius:8px; font-weight:700; font-size:0.9rem; text-decoration:none; transition:background 0.25s;"
+     onmouseover="this.style.background='#c42020'" onmouseout="this.style.background='var(--red)'">
+    Send Us Your Requirement →
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span style="color:white; font-weight:600;">© Mount Engineers</span> · Precision Machining, Hyderabad ·
+  <a href="tel:+919440361856" style="color:#eeece5; text-decoration:none; margin-left:6px;">
+    +91 94403 61856 | +91 63016 24596
+  </a>
+</footer>
+
+
+<script>
+  // Count labels
+  document.getElementById('specialCount').textContent =
+    document.querySelectorAll('#specialGrid .product-card').length + ' products';
+  document.getElementById('productsCount').textContent =
+    document.querySelectorAll('#productsGrid .product-card').length + ' products';
+
+  // Lightbox
+  function openLightbox(card) {
+    document.getElementById('lbImg').src = card.dataset.img;
+    document.getElementById('lbImg').alt = card.dataset.title;
+    document.getElementById('lbTitle').textContent = card.dataset.title;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox')) {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox({ target: document.getElementById('lightbox') });
+  });
+</script>
+</body>
+</html>
