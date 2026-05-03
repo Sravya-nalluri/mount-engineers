@@ -1,11 +1,411 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Thank You</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You – Mount Engineers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #010d22;
+    --red: #e63030;
+    --red-dark: #c42020;
+    --gold: #C9A84C;
+    --gold-light: rgba(201,168,76,0.12);
+    --gold-border: rgba(201,168,76,0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* ── BACKGROUND LAYERS ── */
+  .bg-layer {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  }
+  .bg-radial-1 {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 15% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 85% 20%, rgba(230,48,48,0.06) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 40% at 70% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+  /* Subtle grid lines */
+  .bg-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: relative; z-index: 10;
+    background: rgba(1,13,34,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 14px 40px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  nav img {
+    height: 38px; border-radius: 5px; background: white; padding: 2px;
+  }
+  nav .brand-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800; font-size: 1.05rem; letter-spacing: 0.02em;
+  }
+  nav .brand-text span:first-child { color: var(--red); }
+  nav .brand-text span:last-child  { color: white; }
+  nav .brand-sub {
+    font-size: 0.42rem; color: rgba(238,236,229,0.7);
+    letter-spacing: 0.14em; text-transform: uppercase; font-weight: 300;
+  }
+
+  /* ── MAIN ── */
+  main {
+    position: relative; z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+
+  .card {
+    max-width: 560px; width: 100%;
+    text-align: center;
+    animation: cardIn 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+    opacity: 0;
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── CHECK ICON ── */
+  .check-wrap {
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    border: 2px solid var(--gold-border);
+    animation: popIn 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.2s forwards;
+    opacity: 0; transform: scale(0.6);
+    position: relative;
+  }
+  @keyframes popIn {
+    to { opacity: 1; transform: scale(1); }
+  }
+  .check-wrap::before {
+    content: '';
+    position: absolute; inset: -8px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-border);
+    animation: ringPulse 2.5s ease-out 0.7s infinite;
+  }
+  @keyframes ringPulse {
+    0%   { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+  .check-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 12px rgba(201,168,76,0.5));
+  }
+
+  /* ── LABEL ── */
+  .label-pill {
+    display: inline-block;
+    background: var(--gold-light);
+    border: 1px solid var(--gold-border);
+    color: var(--gold);
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 5px 16px; border-radius: 100px;
+    margin-bottom: 16px;
+    animation: fadeUp 0.5s ease 0.35s forwards; opacity: 0;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 6px;
+    animation: fadeUp 0.5s ease 0.45s forwards; opacity: 0;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .divider {
+    width: 48px; height: 3px;
+    background: linear-gradient(90deg, var(--red), transparent);
+    margin: 18px auto;
+    border-radius: 2px;
+    animation: fadeUp 0.5s ease 0.5s forwards; opacity: 0;
+  }
+
+  .desc {
+    color: rgba(255,255,255,0.68);
+    font-size: 0.93rem; line-height: 1.75;
+    max-width: 400px; margin: 0 auto 28px;
+    animation: fadeUp 0.5s ease 0.55s forwards; opacity: 0;
+  }
+  .desc strong { color: white; font-weight: 600; }
+
+  /* ── RESPONSE TIME BADGE ── */
+  .response-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(230,48,48,0.1);
+    border: 1px solid rgba(230,48,48,0.25);
+    border-radius: 8px;
+    padding: 10px 18px;
+    margin-bottom: 32px;
+    font-size: 0.82rem; color: rgba(255,255,255,0.8);
+    animation: fadeUp 0.5s ease 0.62s forwards; opacity: 0;
+  }
+  .response-badge .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--red);
+    animation: blink 1.4s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .response-badge span { color: white; font-weight: 600; }
+
+  /* ── BUTTONS ── */
+  .btns {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.5s ease 0.7s forwards; opacity: 0;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 28px; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600; font-size: 0.88rem;
+    text-decoration: none; transition: all 0.25s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary {
+    background: var(--red); color: white;
+    border: 2px solid var(--red);
+    box-shadow: 0 4px 20px rgba(230,48,48,0.3);
+  }
+  .btn-primary:hover {
+    background: var(--red-dark); border-color: var(--red-dark);
+    box-shadow: 0 6px 28px rgba(230,48,48,0.4);
+    transform: translateY(-2px);
+  }
+  .btn-outline {
+    background: transparent; color: white;
+    border: 1.5px solid rgba(255,255,255,0.22);
+  }
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-2px);
+  }
+
+  /* ── WHAT HAPPENS NEXT ── */
+  .next-steps {
+    margin-top: 48px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 36px;
+    text-align: left;
+    animation: fadeUp 0.5s ease 0.8s forwards; opacity: 0;
+  }
+  .next-steps-title {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4);
+    margin-bottom: 20px; text-align: center;
+  }
+  .steps {
+    display: flex; gap: 0; flex-direction: column;
+  }
+  .step {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.72rem; font-weight: 700;
+    color: var(--gold); flex-shrink: 0; margin-top: 1px;
+  }
+  .step-body {}
+  .step-body strong {
+    display: block; font-size: 0.85rem; font-weight: 600;
+    color: white; margin-bottom: 3px;
+  }
+  .step-body p {
+    font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.55;
+  }
+
+  /* ── CONTACT BAR ── */
+  .contact-bar {
+    margin-top: 32px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.5s ease 0.9s forwards; opacity: 0;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.8rem; color: rgba(255,255,255,0.55); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-item:hover { color: var(--gold); }
+  .contact-item span:first-child { font-size: 0.95rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 16px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.75rem; color: rgba(255,255,255,0.3);
+    flex-wrap: wrap; gap: 8px;
+  }
+  footer a { color: rgba(201,168,76,0.7); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    nav { padding: 12px 20px; }
+    main { padding: 32px 16px; }
+    .btns { flex-direction: column; align-items: stretch; }
+    .btn { justify-content: center; }
+    footer { padding: 14px 20px; justify-content: center; text-align: center; }
+  }
+</style>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding: 100px;">
-  <h1>Thank You!</h1>
-  <p>Your request has been submitted successfully.</p>
-  <a href="/">Go Back</a>
+<body>
+
+<div class="bg-layer">
+  <div class="bg-radial-1"></div>
+  <div class="bg-grid"></div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <img src="images/logo.jpeg" alt="Mount Engineers Logo">
+  <div>
+    <div class="brand-text">
+      <span>MOUNT</span><span>ENGINEERS</span>
+    </div>
+    <div class="brand-sub">Precision Machining · Since 1990</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="card">
+
+    <!-- Check icon -->
+
+    <!-- Label -->
+    <div class="label-pill">Request Received</div>
+
+    <!-- Heading -->
+    <h1>Thank You for<br>Reaching <em>Out</em></h1>
+
+    <div class="divider"></div>
+
+    <!-- Description -->
+    <p class="desc">
+      Your quote request has been submitted successfully.<br>
+      Our engineering team will review your requirements and get back to you with a <strong>tailored, competitive quote</strong>.
+    </p>
+
+    <!-- Response badge -->
+    <div class="response-badge">
+      <div class="dot"></div>
+      Typical response time: <span>within 24 hours</span>
+    </div>
+
+    <!-- Buttons -->
+    <div class="btns">
+      <a href="index.html" class="btn btn-primary">
+        ← Back to Home
+      </a>
+      <a href="products.html" class="btn btn-outline">
+        Explore Products
+      </a>
+    </div>
+
+    <!-- What happens next -->
+    <div class="next-steps">
+      <div class="next-steps-title">What happens next</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>We review your requirement</strong>
+            <p>Our engineering team reads your enquiry and identifies the best approach for your component or assembly.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>We prepare a tailored quote</strong>
+            <p>Based on material, tolerance, and quantity, we compile a precise, competitive quotation for your project.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>We get back to you</strong>
+            <p>You'll hear from us within 24 hours via email or phone to confirm details and move forward.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact bar -->
+    <div class="contact-bar">
+      <a href="tel:+919440361856" class="contact-item">
+        <span>📞</span> +91 94403 61856
+      </a>
+      <a href="tel:+916301624596" class="contact-item">
+        <span>📞</span> +91 63016 24596
+      </a>
+      <a href="mailto:mountengineersmadhu@gmail.com" class="contact-item">
+        <span>✉</span> mountengineersmadhu@gmail.com
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>© Mount Engineers · Precision CNC Machining, Hyderabad</span>
+  <span>Need help? <a href="mailto:mountengineersmadhu@gmail.com">Email us directly</a></span>
+</footer>
+
 </body>
 </html>
