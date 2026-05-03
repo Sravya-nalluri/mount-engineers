@@ -276,7 +276,7 @@
         <div class="product-card-img"><img src="images/img_sec/special_tools/rotameter.jpeg" alt="Rotameter" loading="lazy"></div>
         <div class="product-card-body">
           <h3>Rotameter</h3>
-          <a href="index.html?product=${encodeURIComponent(name)}#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+<a href="index.html?product=Rotameter#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>        
         </div>
       </div>
 
@@ -285,8 +285,7 @@
         <div class="product-card-img"><img src="images/img_sec/special_tools/depth-micrometer.jpeg" alt="Depth Micrometer" loading="lazy"></div>
         <div class="product-card-body">
           <h3>Depth Micrometer</h3>
-          <a href="index.html?product=${encodeURIComponent(name)}#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-        </div>
+<a href="index.html?product=Depth%20Micrometer#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>        </div>
       </div>
 
 
@@ -294,8 +293,7 @@
         <div class="product-card-img"><img src="images/img_sec/special_tools/nebalizer.jpeg" alt="Nebulizer" loading="lazy"></div>
         <div class="product-card-body">
           <h3>Nebulizer</h3>
-          <a href="index.html?product=${encodeURIComponent(name)}#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-        </div>
+<a href="index.html?product=Nebulizer#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>        </div>
       </div>
 
 
@@ -303,8 +301,7 @@
         <div class="product-card-img"><img src="images/img_sec/special_tools/Instrumentation Sensor Housing Assembly.jpeg" alt="Instrumentation Sensor Housing Assembly" loading="lazy"></div>
         <div class="product-card-body">
           <h3>Instrumentation Sensor Housing Assembly</h3>
-          <a href="index.html?product=${encodeURIComponent(name)}#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
-        </div>
+<a href="index.html?product=Instrumentation%20Sensor%20Housing%20Assembly#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>        </div>
       </div>
 
     
@@ -325,6 +322,13 @@
   </div>
   <div class="products-grid" id="productsGrid">
  <script>
+function formatName(name) {
+  return name
+    .replace(/[-_]/g, " ")
+    .replace(/\bss\b/gi, "SS")
+    .replace(/\b[a-z]/g, char => char.toUpperCase());
+}
+
 const products = [
   "air-cap",
   "AN Flare to Barb Adapter",
@@ -364,20 +368,23 @@ const grid = document.getElementById("productsGrid");
 
 products.forEach(name => {
   const file = `images/img_sec/${name}.jpeg`;
+  const displayName = formatName(name);
 
   const card = document.createElement("div");
   card.className = "product-card";
   card.setAttribute("data-img", file);
-  card.setAttribute("data-title", name);
+  card.setAttribute("data-title", displayName);
   card.onclick = function () { openLightbox(this); };
 
   card.innerHTML = `
     <div class="product-card-img">
-      <img src="${file}" alt="${name}" loading="lazy">
+      <img src="${file}" alt="${displayName}" loading="lazy">
     </div>
     <div class="product-card-body">
-      <h3>${name}</h3>
-      <a href="index.html?product=${encodeURIComponent(name)}#contact" class="product-cta" onclick="event.stopPropagation()">Get Quote</a>
+      <h3>${displayName}</h3>
+      <a href="index.html?product=${encodeURIComponent(displayName)}#contact"
+         class="product-cta"
+         onclick="event.stopPropagation()">Get Quote</a>
     </div>
   `;
 
@@ -396,7 +403,7 @@ products.forEach(name => {
     </div>
     <div class="lightbox-body">
       <h2 id="lbTitle"></h2>
-      <a href="index.html#contact"
+      <a id="lightboxQuoteBtn" href="index.html#contact"
          style="display:block; background:var(--red); color:white; text-align:center; padding:13px; border-radius:8px; font-weight:700; font-size:0.9rem; text-decoration:none;">
         Request a Quote for This Product →
       </a>
@@ -436,13 +443,20 @@ products.forEach(name => {
     document.querySelectorAll('#productsGrid .product-card').length + ' products';
 
   // Lightbox
-  function openLightbox(card) {
-    document.getElementById('lbImg').src = card.dataset.img;
-    document.getElementById('lbImg').alt = card.dataset.title;
-    document.getElementById('lbTitle').textContent = card.dataset.title;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+function openLightbox(card) {
+  const title = card.dataset.title;
+
+  document.getElementById('lbImg').src = card.dataset.img;
+  document.getElementById('lbImg').alt = title;
+  document.getElementById('lbTitle').textContent = title;
+
+  // ✅ IMPORTANT FIX
+  const btn = document.getElementById('lightboxQuoteBtn');
+  btn.href = `index.html?product=${encodeURIComponent(title)}#contact`;
+
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
   function closeLightbox(e) {
     if (!e || e.target === document.getElementById('lightbox')) {
